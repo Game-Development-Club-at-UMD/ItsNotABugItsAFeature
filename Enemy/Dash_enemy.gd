@@ -1,5 +1,13 @@
 extends Enemy
 
+var isDashing : bool
 
-func _process(delta: float) -> void:
-	move_enemy(1.0)
+func _physics_process(delta: float) -> void:
+	if isDashing:
+		pass
+	else:
+		move_enemy(delta, 100)
+
+func dashing() -> void:
+	pass
+	
