@@ -64,7 +64,7 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_qi6uh"]
 script = ExtResource("3_qxhxa")
-power = 1
+power = 5
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxhxa"]
@@ -108,6 +108,7 @@ cooldown = 0.5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rq617")
+frame_progress = 0.7620791
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_17mbl")]
 collision_layer = 4
