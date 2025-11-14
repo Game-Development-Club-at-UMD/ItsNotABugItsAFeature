@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://wcnsakjm3t4m" path="res://Main/main.gd" id="1_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://bd0vxk2l32uw1" path="res://Enemy/enemy.tscn" id="2_liyct"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="4_k3v36"]
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_k3v36"]
@@ -25,10 +26,18 @@ metadata/_custom_type_script = "uid://86uwh70cdq33"
 [sub_resource type="CircleShape2D" id="CircleShape2D_ib3t1"]
 radius = 37.01351
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k3v36"]
+vertices = PackedVector2Array(1142, 638, 10, 638, 10, 10, 1142, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)])
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ib3t1")
 
-[node name="Player" parent="." instance=ExtResource("1_yh5la")]
+[node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
+
+[node name="Enemy" parent="." instance=ExtResource("2_liyct")]
+position = Vector2(801, 128)
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_2w1kt")]
 collision_layer = 2
@@ -67,3 +76,7 @@ position = Vector2(940, 0)
 position = Vector2(563, -1)
 
 [connection signal="timeout" from="SpawnTImer" to="." method="_on_spawnTimer_timeout"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_k3v36")
+
