@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsv5ih6knxyxl"]
+[gd_scene load_steps=12 format=3 uid="uid://dsv5ih6knxyxl"]
 
-[ext_resource type="PackedScene" uid="uid://bd0vxk2l32uw1" path="res://Enemy/enemy.tscn" id="1_ib3t1"]
+[ext_resource type="PackedScene" uid="uid://co2jdfkr573es" path="res://Enemy/fly_enemy.tscn" id="1_liyct"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_2w1kt"]
-[ext_resource type="Script" uid="uid://m16nutlje5jc" path="res://Enemy/Fly_enemy.gd" id="2_ib3t1"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="4_k3v36"]
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_k3v36"]
@@ -32,9 +31,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 0, 648, 1152, 648
 
 [node name="Main" type="Node2D"]
 
-[node name="Fly" parent="." instance=ExtResource("1_ib3t1")]
-position = Vector2(906, 179)
-script = ExtResource("2_ib3t1")
+[node name="Fly_enemy" parent="." instance=ExtResource("1_liyct")]
 
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
 
@@ -61,4 +58,5 @@ shape = SubResource("CircleShape2D_ib3t1")
 debug_color = Color(0.036796562, 0.6508196, 1.92523e-07, 0.41960785)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_k3v36")
