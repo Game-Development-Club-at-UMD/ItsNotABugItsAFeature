@@ -38,6 +38,7 @@ hurt_component = SubResource("Resource_m6jha")
 shape = SubResource("CapsuleShape2D_ncf7h")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
 avoidance_enabled = true
 
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("3_am0pq")]

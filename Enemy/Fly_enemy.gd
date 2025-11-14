@@ -1,7 +1,7 @@
 extends Enemy
 
-#@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var enemy: Enemy = %Enemy as Enemy
 
 
-func _process(delta: float) -> void:
-	move_enemy(1.0)
+func _physics_process(delta: float) -> void:
+	move_enemy(delta, 100)
