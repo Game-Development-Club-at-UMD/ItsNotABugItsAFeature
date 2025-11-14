@@ -23,8 +23,13 @@ folder_colors={
 "res://Components/": "blue",
 "res://Enemies/": "blue",
 "res://Main/": "green",
-"res://Player/": "orange"
+"res://Player/": "orange",
+"res://Spawner/": "yellow"
 }
+
+[global_group]
+
+spawn="Spawn locatioons"
 
 [input]
 
