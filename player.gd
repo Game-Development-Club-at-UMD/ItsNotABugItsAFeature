@@ -28,3 +28,6 @@ func _process(delta: float) -> void:
 		instanced_item.activate()
 	
 	move_and_slide()
+
+func die():
+	queue_free()
