@@ -7,8 +7,12 @@
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_07jwt")
-first_ability = ExtResource("2_hj40t")
-second_ability = ExtResource("3_2ihp4")
+first_ability = ExtResource("3_2ihp4")
+second_ability = ExtResource("2_hj40t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.18, 0.18)
 texture = ExtResource("4_h15oq")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

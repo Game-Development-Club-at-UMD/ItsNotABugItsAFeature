@@ -109,7 +109,7 @@ script = ExtResource("1_do1jo")
 hurt_box = NodePath("HurtBox")
 sprite = NodePath("AnimatedSprite2D")
 ability_anim = NodePath("AnimationPlayer")
-cooldown = 0.3
+cooldown = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
