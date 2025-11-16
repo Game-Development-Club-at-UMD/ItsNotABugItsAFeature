@@ -24,4 +24,4 @@ func disable_player_hitbox():
 	player.hitbox.disable()
 
 func apply_velocity_to_player():
-	player.velocity += directions.get(direction).rotated(player.global_rotation).rotated(deg_to_rad(90)) * power * 250
+	player.velocity += directions.get(direction).rotated(self.global_rotation).rotated(deg_to_rad(90)) * power * 250

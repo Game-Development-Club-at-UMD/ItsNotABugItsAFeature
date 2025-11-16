@@ -5,16 +5,15 @@ var click_position = Vector2()
 var target_position = Vector2()
 
 @onready var inventory: Inventory = $CanvasLayer/Inventory
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 @export var hitbox : HitBox
 @export var item : PackedScene
 
 var instanced_item : Item = null
 
-#func _ready() -> void:
-	#inventory.pickup_new_item(load("res://Items/item.tscn"))
-
 func _process(delta: float) -> void:
+	
 	if Input.is_action_pressed("left_click"):
 		target_position = (get_global_mouse_position() - global_position).normalized()
 		if (get_global_mouse_position() - global_position).length() > 5:
@@ -24,8 +23,6 @@ func _process(delta: float) -> void:
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
 	
-	look_at(get_global_mouse_position())
-	
 	if Input.is_action_just_pressed("right_click"):
 		inventory.activate()
 	
@@ -33,6 +30,17 @@ func _process(delta: float) -> void:
 		inventory.swap_items()
 	
 	move_and_slide()
+	update_anim_parameters()
+
+func update_anim_parameters():
+	if velocity:
+		animation_tree.set("parameters/conditions/idle", false)
+		animation_tree.set("parameters/conditions/walk", true)
+	else:
+		animation_tree.set("parameters/conditions/idle", true)
+		animation_tree.set("parameters/conditions/walk", false)
+	animation_tree.set("parameters/Idle/blend_position", velocity.normalized())
+	animation_tree.set("parameters/Walk/blend_position", velocity.normalized())
 
 func die():
 	queue_free()

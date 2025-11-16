@@ -15,10 +15,10 @@ script = ExtResource("1_xqyry")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 132.0
-offset_right = 309.0
-offset_bottom = 172.0
+offset_left = 22.0
+offset_top = 487.0
+offset_right = 1131.0
+offset_bottom = 614.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -35,10 +35,10 @@ fit_content = true
 
 [node name="ActiveItemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 texture = ExtResource("2_88mhb")
-expand_mode = 4
+expand_mode = 5
 stretch_mode = 5
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/ActiveItemIcon"]
@@ -51,19 +51,19 @@ show_percentage = false
 
 [node name="SwapIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 texture = ExtResource("3_88mhb")
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 5
 
 [node name="InactiveItemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("2_88mhb")
-expand_mode = 4
+expand_mode = 5
 stretch_mode = 5
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/InactiveItemIcon"]
