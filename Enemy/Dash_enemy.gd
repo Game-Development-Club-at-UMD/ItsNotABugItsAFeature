@@ -2,31 +2,43 @@ extends Enemy
 
 @onready var dash_timer: Timer = %DashTimer as Timer
 
-@export var move_speed : float = 100
-@export var dash_speed : float = 400.0
+@export var moveSpeed : float = 100
+@export var dashSpeed : float = 400.0
 
+var dashTargetPosition: Vector2
 var isDashing : bool
-var dash_direction : Vector2
+var dashDirection : Vector2
+var isDashQueued = false
 
 func _physics_process(delta: float) -> void:
-	checkDash()
 	if dash_timer.is_stopped():
+		checkDash()
 		if isDashing:
 			dash(delta)
 		else:
-			move_enemy(delta, move_speed)
+			move_enemy(delta, moveSpeed)
 
 func dash(delta: float) -> void:
+	if isDashQueued:
+		return   
+	else:
+		dashTargetPosition = player_location()
+	
+	isDashQueued = true
+	await get_tree().create_timer(1).timeout
+	isDashQueued = false
+	
 	dash_timer.start()
 	
-	dash_direction = global_position.direction_to(player_location())
-	velocity = dash_direction * dash_speed
+	dashDirection = global_position.direction_to(dashTargetPosition)
+	velocity = dashDirection * dashSpeed
 	
-	global_position+= (velocity * delta) * 10
+	global_position += (velocity * delta) * 10
 
 func checkDash() -> void:
-	if global_position.distance_to(player_location()) < 100:
-		isDashing = true
+	if global_position.distance_to(player_location()) < 150:
+		if not isDashing:
+			isDashing = true
 	else:
 		isDashing = false
 
