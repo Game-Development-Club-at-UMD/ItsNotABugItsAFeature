@@ -11,10 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-
 func _on_spawnTimer_timeout() -> void:
-	
 	var enemy_instance = enemy.instantiate()
 	add_child(enemy_instance)
 	enemy_instance.position = $SpawnLocation.position
