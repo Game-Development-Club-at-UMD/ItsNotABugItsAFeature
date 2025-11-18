@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy = preload("res://Enemy/Fly_enemy.tscn")
+var enemy = preload("res://Enemy/dash_enemy.tscn")
 @onready var fade_player: AnimationPlayer = $FadePlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 
@@ -41,8 +41,17 @@ func _process(_delta: float) -> void:
 
 func _on_spawnTimer_timeout() -> void:
 	finish_round()
-	
 	next_round()
+	# Wave manager
+	var enemy_instance = enemy.instantiate()
+	EnemyContainer.add_child(enemy_instance)
+	enemy_instance.position = $SpawnLocation.position
+	
+	var nodes = get_tree().get_nodes_in_group("spawn")
+	var node = nodes[randi()%nodes.size()]
+	var position1 = node.position
+	$SpawnLocation.position = position1
+	spawn_counter += 1
 
 func finish_round():
 	if spawn_counter == num_to_spawn:
