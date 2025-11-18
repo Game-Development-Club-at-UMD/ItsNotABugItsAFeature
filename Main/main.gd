@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 	finish_round()
 	
 	next_round()
-	print(SpawnTimer.wait_time)
 		
 func finish_round():
 	if spawn_counter == num_to_spawn:
