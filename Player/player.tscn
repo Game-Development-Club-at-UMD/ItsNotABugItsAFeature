@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://1sajrvnamtf7"]
+[gd_scene load_steps=37 format=3 uid="uid://1sajrvnamtf7"]
 
 [ext_resource type="Script" uid="uid://baj3pbwboyb4q" path="res://player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="2_btcbx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://blvmur8hai3fg" path="res://Assets/MC_Front.png" id="3_x3vf3"]
 [ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="4_gwnis"]
 [ext_resource type="PackedScene" uid="uid://btgs2icui0x8c" path="res://Inventory/inventory.tscn" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://b3au3idb4jsar" path="res://Player/Health_bar.gd" id="8_5htga"]
 [ext_resource type="Texture2D" uid="uid://bisphplyf2tev" path="res://Assets/MC_Back.png" id="8_apopc"]
 [ext_resource type="Texture2D" uid="uid://cfxq8i0jkk270" path="res://Assets/MC_Left.png" id="9_5htga"]
 [ext_resource type="Texture2D" uid="uid://ds27tocfp0hhr" path="res://Assets/MC_Right.png" id="10_p5o4e"]
@@ -42,8 +43,8 @@ _bundled = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 
-[sub_resource type="Animation" id="Animation_gu6f8"]
-resource_name = "down"
+[sub_resource type="Animation" id="Animation_b1ygp"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,8 +58,8 @@ tracks/0/keys = {
 "values": [ExtResource("3_x3vf3")]
 }
 
-[sub_resource type="Animation" id="Animation_dkpta"]
-resource_name = "up"
+[sub_resource type="Animation" id="Animation_gu6f8"]
+resource_name = "down"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -69,7 +70,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_apopc")]
+"values": [ExtResource("3_x3vf3")]
 }
 
 [sub_resource type="Animation" id="Animation_lfmf2"]
@@ -102,8 +103,8 @@ tracks/0/keys = {
 "values": [ExtResource("10_p5o4e")]
 }
 
-[sub_resource type="Animation" id="Animation_b1ygp"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_dkpta"]
+resource_name = "up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -114,7 +115,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_x3vf3")]
+"values": [ExtResource("8_apopc")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o28un"]
@@ -229,6 +230,13 @@ offset_left = -576.0
 offset_top = -327.0
 offset_right = -576.0
 offset_bottom = -327.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = -544.0
+offset_top = -290.0
+offset_right = -360.0
+offset_bottom = -263.0
+script = ExtResource("8_5htga")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
