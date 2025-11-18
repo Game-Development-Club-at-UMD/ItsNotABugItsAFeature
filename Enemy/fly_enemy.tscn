@@ -25,8 +25,9 @@ metadata/_custom_type_script = "uid://86uwh70cdq33"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ito7u"]
 
-[node name="fly_enemy" type="CharacterBody2D"]
+[node name="fly_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
 script = ExtResource("1_x7ndy")
+healthbar = NodePath("HealthBar")
 metadata/_custom_type_script = "uid://brj6c1kggd6lh"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,3 +57,12 @@ node_to_kill = NodePath("..")
 shape = SubResource("CapsuleShape2D_ito7u")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -9.999998
+offset_top = -20.999998
+offset_right = 200.0
+offset_bottom = 6.000002
+scale = Vector2(0.1, 0.1)
+show_percentage = false
