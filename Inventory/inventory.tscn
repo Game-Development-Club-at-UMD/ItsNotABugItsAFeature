@@ -44,9 +44,8 @@ stretch_mode = 5
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/ActiveItemIcon"]
 visible = false
 layout_mode = 0
-offset_top = 4.0
 offset_right = 120.0
-offset_bottom = 124.0
+offset_bottom = 123.0
 fill_mode = 3
 show_percentage = false
 
@@ -71,6 +70,6 @@ stretch_mode = 5
 visible = false
 layout_mode = 0
 offset_right = 70.0
-offset_bottom = 70.0
+offset_bottom = 69.0
 fill_mode = 3
 show_percentage = false
