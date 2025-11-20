@@ -1,5 +1,7 @@
 class_name HitBox extends Area2D
 
+signal healthChanged
+
 @export var health_component : HealthComponent
 @export var collision_shape2D : CollisionShape2D
 @export var hit_effect : PackedScene
@@ -24,7 +26,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	do_hit_effect()
-	
+	healthChanged.emit()	
 	if health_component != null:
 		health_component.take_damage((area as HurtBox).do_attack())
 

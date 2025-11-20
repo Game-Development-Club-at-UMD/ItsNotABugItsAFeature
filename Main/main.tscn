@@ -75,13 +75,4 @@ position = Vector2(563, -1)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_k3v36")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-offset_left = 28.0
-offset_top = 25.0
-offset_right = 281.0
-offset_bottom = 52.0
-value = 50.0
-
 [connection signal="timeout" from="SpawnTImer" to="." method="_on_spawnTimer_timeout"]
