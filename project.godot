@@ -33,7 +33,8 @@ folder_colors={
 "res://Items/": "yellow",
 "res://Main/": "green",
 "res://Player/": "orange",
-"res://Spawner/": "yellow"
+"res://Spawner/": "yellow",
+"res://Visual Effects/": "teal"
 }
 
 [global_group]
