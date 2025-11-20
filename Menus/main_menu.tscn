@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://cok2sx4r5f6o6"]
+
+[ext_resource type="Script" uid="uid://d22nhgjn8ebml" path="res://Menus/main_menu.gd" id="1_jf8mj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf8mj"]
+bg_color = Color(0.5095547, 0.6393584, 0.53277916, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.2870057, 0.38416302, 0.30541295, 0.4862745)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.5)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jf8mj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+
+[node name="VSplitContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -207.625
+offset_right = 288.0
+offset_bottom = 207.625
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="MenuOptions" type="VBoxContainer" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
+text = "Play"
+
+[node name="Settings" type="Button" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
+text = "Settings
+"
+
+[node name="Credits" type="Button" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
+text = "Quit"
+
+[connection signal="pressed" from="VSplitContainer/MenuOptions/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VSplitContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
