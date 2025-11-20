@@ -19,7 +19,6 @@ func do_hit_effect() -> void:
 		hit_effect.emit(self)
 
 func _on_area_entered(area: Area2D) -> void:
-	
 	if area is not HurtBox:
 		return
 	
@@ -27,13 +26,15 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if health_component != null:
 		health_component.take_damage((area as HurtBox).do_attack())
+		# apply knockback
+		var target_vector = node_to_kill.global_position.direction_to(area.global_position) * area.hurt_component.power
+		node_to_kill.velocity = lerp(node_to_kill.velocity, target_vector, 3)
 
 func die():
-	if node_to_kill != null and node_to_kill.has_method("die"):
-		node_to_kill.die()
+	if node_to_kill == null:
 		return
-		
-	if node_to_kill is Player:
+	
+	if node_to_kill.has_method("die"):
 		node_to_kill.die()
-	elif node_to_kill != null:
+	else:
 		node_to_kill.queue_free()
