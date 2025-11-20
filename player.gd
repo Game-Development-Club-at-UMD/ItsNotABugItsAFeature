@@ -18,6 +18,7 @@ func _ready() -> void:
 	player_died.connect(get_parent().player_died)
 
 func _process(delta: float) -> void:
+	print(hitbox.health_component.health)
 	if Input.is_action_pressed("left_click"):
 		target_position = (get_global_mouse_position() - global_position).normalized()
 		if (get_global_mouse_position() - global_position).length() > 5:
