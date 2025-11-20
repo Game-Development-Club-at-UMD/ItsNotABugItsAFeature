@@ -19,6 +19,11 @@ func won_game(old_loaded_scene : Node):
 	switch_scene(old_loaded_scene, "res://Main/main.tscn")
 
 func switch_scene(old_loaded_scene: Node, new_scene: String):
+	if old_loaded_scene.is_queued_for_deletion():
+		return
 	old_loaded_scene.queue_free()
-	var main_scene = load(new_scene).instantiate()
-	self.add_child.call_deferred(main_scene)
+	await old_loaded_scene.tree_exited
+	var instanced_scene : Node = load(new_scene).instantiate()
+	add_child.call_deferred(instanced_scene)
+	#await instanced_scene.tree_entered
+	#get_tree().current_scene = instanced_scene

@@ -5,6 +5,10 @@ class_name HitBox extends Area2D
 @export var hit_effect : ParticleEmitter
 @export var node_to_kill : Node
 
+@onready var invinc_timer: Timer = $InvincTimer
+
+var invinc_time : float = 0.5
+
 func _ready() -> void:
 	health_component.die.connect(die)
 
@@ -22,7 +26,15 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is not HurtBox:
 		return
 	
+	if !invinc_timer.is_stopped():
+		# allowing healing items even if invinc frames
+		if area.hurt_component.power < 0:
+			health_component.take_damage(area.do_attack())
+		return
+	
 	do_hit_effect()
+	invinc_timer.start(invinc_time)
+	
 	
 	if health_component != null:
 		health_component.take_damage((area as HurtBox).do_attack())
@@ -38,3 +50,7 @@ func die():
 		node_to_kill.die()
 	else:
 		node_to_kill.queue_free()
+
+
+func _on_invinc_timer_timeout() -> void:
+	pass
