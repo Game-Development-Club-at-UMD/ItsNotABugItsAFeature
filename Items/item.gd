@@ -31,7 +31,6 @@ func activate():
 	var second_action =  activate_ability(second_ability)
 	cooldown = max(second_action.cooldown, cooldown)
 	await second_action.finished
-	#print(cooldown)
 	is_running = false
 	timer.start(cooldown)
 	start_cooldown.emit()

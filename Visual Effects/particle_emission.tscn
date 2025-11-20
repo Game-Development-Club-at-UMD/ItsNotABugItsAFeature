@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5y5jhvimg561"]
+
+[sub_resource type="Gradient" id="Gradient_7f4ed"]
+colors = PackedColorArray(1, 1, 1, 1, 0.26015192, 0.25390735, 0.2554719, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_crytj"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f1n3k"]
+width = 4
+height = 4
+noise = SubResource("FastNoiseLite_crytj")
+color_ramp = SubResource("Gradient_7f4ed")
+
+[sub_resource type="Curve" id="Curve_hbw0y"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.21511626, 0), 176.45334, 176.45334, 0, 0, Vector2(0.21512626, 100), 135.99664, 135.99664, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_fiujv"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0.15398929, 0.15799701, 0.13381055, 1)
+
+[sub_resource type="Curve" id="Curve_lxuje"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.8876406), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Particles" type="CPUParticles2D"]
+emitting = false
+amount = 12
+texture = SubResource("NoiseTexture2D_f1n3k")
+one_shot = true
+preprocess = 0.02
+speed_scale = 1.5
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 25.63
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 154.64
+initial_velocity_max = 154.64
+damping_min = 80.412
+damping_max = 100.0
+damping_curve = SubResource("Curve_hbw0y")
+scale_amount_max = 1.2
+color = Color(0.6378432, 0.6378432, 0.6378431, 1)
+color_ramp = SubResource("Gradient_fiujv")
+hue_variation_min = -0.25
+hue_variation_max = 0.31
+hue_variation_curve = SubResource("Curve_lxuje")
