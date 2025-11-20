@@ -2,45 +2,42 @@ extends Enemy
 
 @onready var dash_timer: Timer = %DashTimer as Timer
 
+enum States {DASHING, TRACKING_PLAYER}
+
+var state : States = States.TRACKING_PLAYER
+
 @export var moveSpeed : float = 100
-@export var dashSpeed : float = 400.0
+@export var dashSpeed : float = 200
 
 var dashTargetPosition: Vector2
-var isDashing : bool
 var dashDirection : Vector2
-var isDashQueued = false
+var health : int
 
 func _physics_process(delta: float) -> void:
-	if dash_timer.is_stopped():
-		checkDash()
-		if isDashing:
-			dash(delta)
-		else:
+	match state:
+		States.DASHING:
+			pass
+		States.TRACKING_PLAYER:
+			checkDash()
 			move_enemy(delta, moveSpeed)
-
-func dash(delta: float) -> void:
-	if isDashQueued:
-		return   
-	else:
-		dashTargetPosition = player_location()
 	
-	isDashQueued = true
-	await get_tree().create_timer(1).timeout
-	isDashQueued = false
+	update_health(health)
+	move_and_slide()
+
+func dash() -> void:
+	dashTargetPosition = player_location()
+	
+	await get_tree().create_timer(.5).timeout
 	
 	dash_timer.start()
 	
 	dashDirection = global_position.direction_to(dashTargetPosition)
-	velocity = dashDirection * dashSpeed
-	
-	global_position += (velocity * delta) * 10
+	velocity = dashDirection * dashSpeed * 2	
 
 func checkDash() -> void:
-	if global_position.distance_to(player_location()) < 150:
-		if not isDashing:
-			isDashing = true
-	else:
-		isDashing = false
+	if global_position.distance_to(player_location()) < 100:
+		state = States.DASHING
+		dash()
 
-func _on_DashTimer_timeout():
-	isDashing = false
+func _on_dash_timer_timeout() -> void:
+	state = States.TRACKING_PLAYER
