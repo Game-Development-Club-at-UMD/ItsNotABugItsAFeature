@@ -74,9 +74,6 @@ func set_level_stats() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	finish_round()
-	next_round()
-	
 	# Wave manager
 	var enemy_instance = enemy.instantiate()
 	var spawnpoint = get_tree().get_nodes_in_group("spawn").pick_random()
@@ -85,8 +82,16 @@ func _on_spawn_timer_timeout() -> void:
 	enemy_instance.global_position = spawnpoint.global_position
 	
 	spawn_counter += 1
+	
+	if spawn_counter == num_to_spawn && enemy_container.get_children().size() == 0:
+		finish_round()
+		next_round()
 
 
-func _on_enemy_container_child_exiting_tree(_node: Node) -> void:
+func _on_enemy_container_child_exiting_tree(killed_enemy: Node) -> void:
+	await killed_enemy.tree_exited
 	var enemies_killed : int = spawn_counter - enemy_container.get_children().size()
 	round_progress_bar.value = (enemies_killed as float / num_to_spawn as float) * 100
+	
+	
+	
