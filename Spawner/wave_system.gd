@@ -24,26 +24,24 @@ func _ready() -> void:
 	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
 
 func finish_round():
-	if spawn_counter == num_to_spawn:
-		is_done_spawning = true
-		spawn_timer.stop()
-		
+	print("End of round ", wave)
+	spawn_timer.stop()
+	
+
 func next_round():
+	# TODO: Dispaly Text on Screen about wave finished
+	await get_tree().create_timer(3.0).timeout
+	# TODO: Display Text on Screen about new wave beginning
+	await get_tree().create_timer(3.0).timeout
+	wave += 1
+	spawn_counter = 0
 	round_progress_bar.value = 0
 	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
-	if is_done_spawning == true and enemy_container.get_child_count() == 0:
-		# TODO: Dispaly Text on Screen about wave finished
-		await wait(3.0)
-		# TODO: Display Text on Screen about new wave beginning
-		await wait(3.0)
-		wave += 1
-		spawn_counter = 0
-		set_level_stats()
-		spawn_timer.start()
-		is_done_spawning = false
-	
-func wait(duration):  
-	await get_tree().create_timer(duration, false, false, true).timeout
+	set_level_stats()
+	spawn_timer.start()
+	is_done_spawning = false
+	print("Start of round ", wave)
+
 
 func set_level_stats() -> void:
 		# Stats Blocks every 5 levels
@@ -74,6 +72,11 @@ func set_level_stats() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
+	if spawn_counter == num_to_spawn:
+		if enemy_container.get_children().size() == 0:
+			finish_round()
+			next_round()
+		return
 	# Wave manager
 	var enemy_instance = enemy.instantiate()
 	var spawnpoint = get_tree().get_nodes_in_group("spawn").pick_random()
@@ -82,16 +85,9 @@ func _on_spawn_timer_timeout() -> void:
 	enemy_instance.global_position = spawnpoint.global_position
 	
 	spawn_counter += 1
-	
-	if spawn_counter == num_to_spawn && enemy_container.get_children().size() == 0:
-		finish_round()
-		next_round()
 
 
 func _on_enemy_container_child_exiting_tree(killed_enemy: Node) -> void:
 	await killed_enemy.tree_exited
 	var enemies_killed : int = spawn_counter - enemy_container.get_children().size()
 	round_progress_bar.value = (enemies_killed as float / num_to_spawn as float) * 100
-	
-	
-	
