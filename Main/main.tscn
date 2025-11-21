@@ -1,10 +1,24 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsv5ih6knxyxl"]
+[gd_scene load_steps=17 format=3 uid="uid://dsv5ih6knxyxl"]
 
 [ext_resource type="Script" uid="uid://wcnsakjm3t4m" path="res://Main/main.gd" id="1_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_2w1kt"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://dd8padwwgwlvi" path="res://Spawner/wave_system.tscn" id="5_k3v36"]
+[ext_resource type="Texture2D" uid="uid://bo2nu0thve200" path="res://Assets/debug_background.png" id="6_liyct"]
+
+[sub_resource type="Gradient" id="Gradient_liyct"]
+offsets = PackedFloat32Array(0, 0.99333334)
+colors = PackedColorArray(0.36797422, 0.2767232, 0.17158654, 1, 0.7145806, 0.5126926, 0.33638537, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ib3t1"]
+noise_type = 3
+frequency = 0.0121
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f6fdm"]
+noise = SubResource("FastNoiseLite_ib3t1")
+color_ramp = SubResource("Gradient_liyct")
+seamless = true
 
 [sub_resource type="Resource" id="Resource_eunhr"]
 script = ExtResource("3_qvhan")
@@ -111,6 +125,18 @@ _data = {
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ib3t1")
+
+[node name="Debugbackground" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(576.5, 324)
+scale = Vector2(0.47708333, 0.40250003)
+texture = ExtResource("6_liyct")
+
+[node name="Sprite2D" type="Sprite2D" parent="Debugbackground"]
+modulate = Color(1, 1, 1, 0.49803922)
+position = Vector2(-0.13964844, -1.2918701)
+scale = Vector2(4.704422, 3.1300468)
+texture = SubResource("NoiseTexture2D_f6fdm")
 
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
 
