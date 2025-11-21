@@ -26,10 +26,12 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is not HurtBox:
 		return
 	
+	# allowing healing items even if invinc frames
+	if area.hurt_component.power < 0:
+		health_component.take_damage(area.do_attack())
+		return
+	
 	if !invinc_timer.is_stopped():
-		# allowing healing items even if invinc frames
-		if area.hurt_component.power < 0:
-			health_component.take_damage(area.do_attack())
 		return
 	
 	do_hit_effect()

@@ -22,8 +22,8 @@ func _physics_process(delta: float) -> void:
 			pass
 		States.TRACKING_PLAYER:
 			checkDash()
+			velocity = navigation_agent_2d.get_velocity()
 			move_enemy(delta, moveSpeed)
-	
 	update_health(health)
 	move_and_slide()
 
@@ -48,3 +48,7 @@ func checkDash() -> void:
 func _on_dash_timer_timeout() -> void:
 	state = States.TRACKING_PLAYER
 	dash_visualization.hide()
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	navigation_agent_2d.set_velocity(safe_velocity)
