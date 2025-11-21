@@ -3,14 +3,12 @@ extends ProgressBar
 
 @export var Hitbox : HitBox
 
-func _ready():
-	print("haiiiii")
-	if Hitbox == null:
-		print("haiiiii2")
-		return
-	Hitbox.healthChanged.connect(update)
-	update()
 
+func _ready():
+	
+	Hitbox.health_component.healthChanged.connect(update)
+	update()
+	
 
 func update():
 

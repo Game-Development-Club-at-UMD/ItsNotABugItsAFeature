@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://1sajrvnamtf7"]
+[gd_scene load_steps=40 format=3 uid="uid://1sajrvnamtf7"]
 
 [ext_resource type="Script" uid="uid://baj3pbwboyb4q" path="res://player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="2_btcbx"]
@@ -15,7 +15,7 @@
 
 [sub_resource type="Resource" id="Resource_k53q1"]
 script = ExtResource("3_gwnis")
-health = 2
+health = 50
 max_health = 100
 metadata/_custom_type_script = "uid://86uwh70cdq33"
 
@@ -43,6 +43,12 @@ _bundled = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhl08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5htga"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5o4e"]
+bg_color = Color(0, 1, 0, 1)
 
 [sub_resource type="Animation" id="Animation_b1ygp"]
 length = 0.001
@@ -241,6 +247,8 @@ offset_left = -544.0
 offset_top = -290.0
 offset_right = -360.0
 offset_bottom = -263.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5htga")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p5o4e")
 script = ExtResource("8_5htga")
 Hitbox = NodePath("../../HitBox")
 

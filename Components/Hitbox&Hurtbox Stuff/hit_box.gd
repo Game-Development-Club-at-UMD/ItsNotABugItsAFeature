@@ -1,6 +1,6 @@
 class_name HitBox extends Area2D
 
-signal healthChanged
+
 
 @export var health_component : HealthComponent
 @export var collision_shape2D : CollisionShape2D
@@ -18,6 +18,7 @@ func disable() -> void:
 
 func do_hit_effect() -> void:
 	if hit_effect != null:
+		
 		add_child(hit_effect.instantiate())
 
 func _on_area_entered(area: Area2D) -> void:
@@ -26,9 +27,10 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	do_hit_effect()
-	healthChanged.emit()	
+	
 	if health_component != null:
 		health_component.take_damage((area as HurtBox).do_attack())
+
 
 func die():
 	if node_to_kill is Player:
