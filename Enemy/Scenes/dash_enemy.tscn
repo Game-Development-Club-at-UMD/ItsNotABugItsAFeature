@@ -54,7 +54,10 @@ shape = SubResource("CapsuleShape2D_6djl0")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 avoidance_enabled = true
-radius = 100.0
+radius = 50.0
+debug_enabled = true
+debug_path_custom_color = Color(0, 1, 1, 1)
+debug_path_custom_line_width = 0.65
 
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_18mdo")]
 collision_layer = 0
@@ -81,10 +84,9 @@ offset_bottom = 6.000002
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-
 [node name="DashVisRotationHelper" type="Node2D" parent="."]
 
 [node name="DashVisualization" parent="DashVisRotationHelper" instance=ExtResource("7_qou4v")]
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

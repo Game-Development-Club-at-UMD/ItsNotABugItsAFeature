@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eqilm"]
 
-[sub_resource type="Resource" id="Resource_3geoc"]
+[sub_resource type="Resource" id="Resource_e81u1"]
 resource_local_to_scene = true
 script = ExtResource("3_u5va4")
 power = 10
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncf7h"]
 
-[sub_resource type="Resource" id="Resource_40sw7"]
+[sub_resource type="Resource" id="Resource_1tiod"]
 resource_local_to_scene = true
 script = ExtResource("5_664f4")
 health = 100
@@ -43,7 +43,7 @@ shape = SubResource("CapsuleShape2D_eqilm")
 [node name="HurtBox" parent="." instance=ExtResource("2_1tiod")]
 collision_layer = 2
 collision_mask = 0
-hurt_component = SubResource("Resource_3geoc")
+hurt_component = SubResource("Resource_e81u1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_ncf7h")
@@ -56,7 +56,7 @@ radius = 100.0
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_mlyat")]
 collision_layer = 0
 collision_mask = 4
-health_component = SubResource("Resource_40sw7")
+health_component = SubResource("Resource_1tiod")
 collision_shape2D = NodePath("CollisionShape2D")
 node_to_kill = NodePath("..")
 
