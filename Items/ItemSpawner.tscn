@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxittwhcv7xg"]
+[gd_scene load_steps=12 format=3 uid="uid://cxittwhcv7xg"]
 
 [ext_resource type="Script" uid="uid://blfyr6mbm7vsb" path="res://Items/item_spawner.gd" id="1_v1wlb"]
 [ext_resource type="Texture2D" uid="uid://cqmqg3uxqk7yh" path="res://Assets/Elbow Arrow.png" id="2_7gxwm"]
@@ -69,6 +69,8 @@ border_color = Color(0.14117648, 0.14117648, 0.14117648, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nx6r"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gxwm"]
+
 [node name="ItemSpawner" type="Node2D" groups=["ItemSpawner"]]
 script = ExtResource("1_v1wlb")
 
@@ -96,7 +98,7 @@ position = Vector2(4, -58)
 [node name="PanelContainer" type="PanelContainer" parent="ItemPopup"]
 offset_left = -175.0
 offset_right = 176.0
-offset_bottom = 114.0
+offset_bottom = 126.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_7gxwm")
 
@@ -160,13 +162,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
 text = "sample text in here"
 
-[node name="Tooltips" type="VBoxContainer" parent="ItemPopup"]
-offset_left = -59.0
-offset_top = 120.0
-offset_right = 55.0
-offset_bottom = 204.0
+[node name="Tooltips" type="HBoxContainer" parent="ItemPopup"]
+offset_left = -110.0
+offset_top = 140.0
+offset_right = 112.0
+offset_bottom = 180.0
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemPopup/Tooltips"]
 layout_mode = 2
@@ -186,6 +190,11 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Swap"
 fit_content = true
+
+[node name="Panel" type="Panel" parent="ItemPopup/Tooltips"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7gxwm")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ItemPopup/Tooltips"]
 layout_mode = 2

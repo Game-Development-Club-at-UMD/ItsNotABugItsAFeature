@@ -11,7 +11,6 @@ class_name ItemSpawner extends Node2D
 signal player_chose_item
 
 enum States {ENABLED, DISABLED}
-var has_player : bool = false
 var state : States = States.DISABLED
 var item_1 : Item
 var item_2 : Item
@@ -71,7 +70,7 @@ func spawn_item():
 	icon_item.texture = spawned_item.icon.texture
 	var first_ability = spawned_item.first_ability.instantiate()
 	var second_ability = spawned_item.second_ability.instantiate()
-	description_item.text = "[center]" + first_ability.text + "[br]" + second_ability.text
+	description_item.text = first_ability.text + "[br]" + second_ability.text
 
 func start_item_selection_phase():
 	spawn_item()
@@ -79,13 +78,6 @@ func start_item_selection_phase():
 
 func display_current_player_items(item : Item):
 	item_1_icon.texture_normal = item.icon.texture
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
-		has_player = true
-
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is not Player:
-		has_player = false
+	var first_ability = item.first_ability.instantiate()
+	var second_ability = item.second_ability.instantiate()
+	item_1_text.text = first_ability.text + "[br]" + second_ability.text
