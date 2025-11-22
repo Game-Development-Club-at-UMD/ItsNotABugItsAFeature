@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://u27srxuupvht"]
+
+[ext_resource type="Script" uid="uid://cort7nyito44h" path="res://Items/item.gd" id="1_spebu"]
+[ext_resource type="PackedScene" uid="uid://bqblw0hn6ba16" path="res://Abilities/Scenes/Movements/left_dash.tscn" id="2_4u2vi"]
+[ext_resource type="PackedScene" uid="uid://b7v0gxpjpdcnu" path="res://Abilities/Scenes/Attacks/basic_attack.tscn" id="3_72kra"]
+[ext_resource type="Texture2D" uid="uid://cfxq8i0jkk270" path="res://Assets/MC_Left.png" id="4_4u2vi"]
+
+[node name="Item3" type="Node2D" node_paths=PackedStringArray("icon")]
+script = ExtResource("1_spebu")
+icon = NodePath("Sprite2D")
+first_ability = ExtResource("2_4u2vi")
+second_ability = ExtResource("3_72kra")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_4u2vi")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

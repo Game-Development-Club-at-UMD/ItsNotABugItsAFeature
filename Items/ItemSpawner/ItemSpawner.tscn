@@ -1,6 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxittwhcv7xg"]
+[gd_scene load_steps=13 format=3 uid="uid://cxittwhcv7xg"]
 
-[ext_resource type="Script" uid="uid://blfyr6mbm7vsb" path="res://Items/item_spawner.gd" id="1_v1wlb"]
+[ext_resource type="Script" uid="uid://blfyr6mbm7vsb" path="res://Items/ItemSpawner/item_spawner.gd" id="1_v1wlb"]
 [ext_resource type="Texture2D" uid="uid://cqmqg3uxqk7yh" path="res://Assets/Elbow Arrow.png" id="2_7gxwm"]
 [ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="2_yxxfw"]
 
@@ -67,6 +67,9 @@ border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0.14117648, 0.14117648, 0.14117648, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac5vx"]
+bg_color = Color(0.74558026, 0.7455802, 0.74558014, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nx6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gxwm"]
@@ -128,6 +131,15 @@ bbcode_enabled = true
 text = "[center]yayyy this is an item description"
 fit_content = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="ItemPopup/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ac5vx")
+bbcode_enabled = true
+text = "[center]Press 'R' to switch which item to change"
+fit_content = true
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="ItemPopup/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -166,10 +178,10 @@ bbcode_enabled = true
 text = "sample text in here"
 
 [node name="Tooltips" type="HBoxContainer" parent="ItemPopup"]
-offset_left = -110.0
-offset_top = 140.0
-offset_right = 112.0
-offset_bottom = 180.0
+offset_left = -111.0
+offset_top = 157.0
+offset_right = 111.0
+offset_bottom = 197.0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemPopup/Tooltips"]

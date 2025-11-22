@@ -18,8 +18,11 @@ var player : Player = null
 var spawned_item : Item
 var inventory : Inventory
 var available_items : Array[String] = [
-	"res://Items/another_item.tscn",
-	"res://Items/item.tscn",
+	"res://Items/Scenes/another_item.tscn",
+	"res://Items/Scenes/Item1.tscn",
+	"res://Items/Scenes/item.tscn",
+	"res://Items/Scenes/item_2.tscn",
+	"res://Items/Scenes/item_3.tscn",
 ]
 var distance : float
 
