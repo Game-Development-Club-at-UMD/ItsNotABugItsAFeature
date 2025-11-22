@@ -18,6 +18,8 @@ power = 10
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6djl0"]
+radius = 11.0
+height = 32.0
 
 [sub_resource type="Resource" id="Resource_igfr2"]
 resource_local_to_scene = true
@@ -32,8 +34,10 @@ particle_color = Color(2.4065375e-06, 0.78313017, 0.28045723, 1)
 metadata/_custom_type_script = "uid://c8xnefd6fkw30"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3ece"]
+radius = 11.0
+height = 32.0
 
-[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["enemy"]]
 script = ExtResource("1_tvo0k")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_6djl0")
@@ -54,7 +58,9 @@ shape = SubResource("CapsuleShape2D_6djl0")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 avoidance_enabled = true
-radius = 100.0
+radius = 50.0
+debug_path_custom_color = Color(0, 1, 1, 1)
+debug_path_custom_line_width = 0.65
 
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_18mdo")]
 collision_layer = 0
@@ -81,10 +87,9 @@ offset_bottom = 6.000002
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-
 [node name="DashVisRotationHelper" type="Node2D" parent="."]
 
 [node name="DashVisualization" parent="DashVisRotationHelper" instance=ExtResource("7_qou4v")]
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

@@ -1,8 +1,9 @@
 extends Node2D
 
-var enemy = preload("res://Enemy/Scenes/fly_enemy.tscn")
 @onready var fade_player: AnimationPlayer = $FadePlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+@onready var item_spawner: ItemSpawner = $ItemSpawner
+@onready var wave_system: Node2D = $WaveSystem
 
 signal lost_game
 
@@ -12,6 +13,8 @@ func _ready() -> void:
 	fade_player.play("fade_in")
 	await fade_player.animation_finished
 	color_rect.visible = false
+	item_spawner.player_chose_item.connect(wave_system.next_round)
+	wave_system.end_of_wave.connect(item_spawner.start_item_selection_phase)
 
 ## signal connects from Player
 func player_died():

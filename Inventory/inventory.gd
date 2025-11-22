@@ -3,6 +3,7 @@ class_name Inventory extends Control
 ## the way it is :)
 
 signal movement_visualization_updated(direction : Vector2)
+signal active_item_swapped(item : Item)
 
 ## [Item] which gets triggered when the inventory is instructed to activate
 var active_item : Item
@@ -25,9 +26,9 @@ var did_switch : bool = false
 
 
 func _ready() -> void:
-	pickup_new_item(load("res://Items/item.tscn"))
+	pickup_new_item(load("res://Items/Scenes/another_item.tscn"))
 	swap_items()
-	pickup_new_item(load("res://Items/another_item.tscn"))
+	pickup_new_item(load("res://Items/Scenes/Item1.tscn"))
 	
 
 func _process(_delta: float) -> void:
@@ -86,12 +87,13 @@ func swap_items():
 	
 	# notating if a switch happened in case there's that funky await signal in [method activate]
 	did_switch = true
+	active_item_swapped.emit(active_item)
 
 ## updates UI display and connects signal to correct function
 func load_data_from_active_item():
 	if active_item == null:
 		return
-	print('updating move visuals')
+	#print('updating move visuals')
 	update_movement_visualization()
 	active_item_icon.texture = active_item.icon.texture
 	active_item.timer.timeout.connect(_on_active_item_cooldown_timeout)

@@ -1,5 +1,7 @@
 class_name HitBox extends Area2D
 
+
+
 @export var health_component : HealthComponent
 @export var collision_shape2D : CollisionShape2D
 @export var hit_effect : ParticleEmitter
@@ -26,10 +28,12 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is not HurtBox:
 		return
 	
+	# allowing healing items even if invinc frames
+	if area.hurt_component.power < 0:
+		health_component.take_damage(area.do_attack())
+		return
+	
 	if !invinc_timer.is_stopped():
-		# allowing healing items even if invinc frames
-		if area.hurt_component.power < 0:
-			health_component.take_damage(area.do_attack())
 		return
 	
 	do_hit_effect()
@@ -41,6 +45,7 @@ func _on_area_entered(area: Area2D) -> void:
 		# apply knockback
 		var target_vector = node_to_kill.global_position.direction_to(area.global_position) * area.hurt_component.power
 		node_to_kill.velocity = lerp(node_to_kill.velocity, target_vector, 3)
+
 
 func die():
 	if node_to_kill == null:

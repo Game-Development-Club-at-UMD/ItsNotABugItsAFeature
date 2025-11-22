@@ -10,6 +10,8 @@ extends Node2D
 @onready var splash_screen_text: RichTextLabel = %SplashScreenText
 @onready var splash_screen: Control = %SplashScreen
 
+signal end_of_wave
+
 var wave: int = 0
 
 var spawn_counter: int = 0
@@ -21,19 +23,21 @@ var attack: int
 var timer_spawn: float = 3.0
 var num_to_spawn: int = 10
 
-var enemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
+var dashEnemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
+var flyEnemy = preload("res://Enemy/Scenes/fly_enemy.tscn")
+
+var enemy_arr = [dashEnemy, flyEnemy]
 
 func _ready() -> void:
 	splash_screen.modulate.a = 0
-	round_progress_bar.value = 0
-	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
+	update_round_counter()
 	set_level_stats()
 	play_splash_screen()
 
 func finish_round():
 	print("End of round ", wave)
 	spawn_timer.stop()
-	
+	end_of_wave.emit()
 
 func update_round_counter():
 	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
@@ -46,7 +50,9 @@ func play_splash_screen():
 
 func next_round():
 	wave += 1
-	await play_splash_screen()
+	splash_screen_text.text = "[center][shake]Round: " + str(wave)
+	animation_player.play("RoundSplashScreen")
+	await animation_player.animation_finished
 	spawn_counter = 0
 	set_level_stats()
 	spawn_timer.start()
@@ -86,17 +92,16 @@ func _on_spawn_timer_timeout() -> void:
 	if spawn_counter == num_to_spawn:
 		if enemy_container.get_children().size() == 0:
 			finish_round()
-			next_round()
 		return
-	# Wave manager
-	var enemy_instance = enemy.instantiate()
+	# Wave manager	
+	var enemy_instance = enemy_arr.pick_random().instantiate()
+	
 	var spawnpoint = get_tree().get_nodes_in_group("spawn").pick_random()
 	
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawnpoint.global_position
 	
 	spawn_counter += 1
-
 
 func _on_enemy_container_child_exiting_tree(killed_enemy: Node) -> void:
 	await killed_enemy.tree_exited

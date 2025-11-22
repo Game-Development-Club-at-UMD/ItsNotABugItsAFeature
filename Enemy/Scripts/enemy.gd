@@ -21,7 +21,9 @@ func move_enemy(delta : float, movement_speed: float) -> void:
 	nextPoint = navigation_agent_2d.get_next_path_position()
 	direction = global_position.direction_to(nextPoint)
 	
-	velocity = lerp(velocity, direction * movement_speed, delta * 12)
+	navigation_agent_2d.set_velocity(lerp(navigation_agent_2d.get_velocity(), direction * movement_speed, delta * 12))
+	#velocity = navigation_agent_2d.get_velocity()
+	#velocity = lerp(velocity, direction * movement_speed, delta * 12)
 
 func player_location() -> Vector2:
 	return player.global_position
