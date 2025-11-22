@@ -40,7 +40,7 @@ bg_color = Color(1, 1, 1, 0.45882353)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hho1d"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="fly_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+[node name="fly_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["enemy"]]
 script = ExtResource("1_x7ndy")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_dkaax")

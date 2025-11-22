@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://c8xnefd6fkw30"
 radius = 11.0
 height = 32.0
 
-[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["enemy"]]
 script = ExtResource("1_tvo0k")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_6djl0")
