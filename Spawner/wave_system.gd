@@ -9,7 +9,7 @@ extends Node2D
 
 @onready var splash_screen_text: RichTextLabel = %SplashScreenText
 @onready var splash_screen: Control = %SplashScreen
-s
+
 var wave: int = 0
 
 var spawn_counter: int = 0
