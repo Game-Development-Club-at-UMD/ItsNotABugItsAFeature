@@ -23,7 +23,10 @@ var attack: int
 var timer_spawn: float = 3.0
 var num_to_spawn: int = 10
 
-var enemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
+var dashEnemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
+var flyEnemy = preload("res://Enemy/Scenes/fly_enemy.tscn")
+
+var enemy_arr = [dashEnemy, flyEnemy]
 
 func _ready() -> void:
 	splash_screen.modulate.a = 0
@@ -90,15 +93,15 @@ func _on_spawn_timer_timeout() -> void:
 		if enemy_container.get_children().size() == 0:
 			finish_round()
 		return
-	# Wave manager
-	var enemy_instance = enemy.instantiate()
+	# Wave manager	
+	var enemy_instance = enemy_arr.pick_random().instantiate()
+	
 	var spawnpoint = get_tree().get_nodes_in_group("spawn").pick_random()
 	
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.global_position = spawnpoint.global_position
 	
 	spawn_counter += 1
-
 
 func _on_enemy_container_child_exiting_tree(killed_enemy: Node) -> void:
 	await killed_enemy.tree_exited
