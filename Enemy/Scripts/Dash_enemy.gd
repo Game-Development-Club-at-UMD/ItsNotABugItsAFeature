@@ -11,7 +11,7 @@ var dashDirection : Vector2
 var health : int
 
 var state : States = States.TRACKING_PLAYER
-enum States {DASHING, TRACKING_PLAYER}
+enum States {DASHING, TRACKING_PLAYER, WAIT_DASH}
 
 func _ready() -> void:
 	dash_visualization.hide()
@@ -22,10 +22,13 @@ func _physics_process(delta: float) -> void:
 			pass
 		States.TRACKING_PLAYER:
 			checkDash()
-			velocity = navigation_agent_2d.get_velocity()
 			move_enemy(delta, moveSpeed)
-	update_health(health)
+			velocity = navigation_agent_2d.get_velocity() 
+		States.WAIT_DASH:
+			velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
+	
 	move_and_slide()
+	update_health(health)
 
 func dash() -> void:
 	dashTargetPosition = player_location()
@@ -33,9 +36,9 @@ func dash() -> void:
 	dashDirection = global_position.direction_to(dashTargetPosition)
 	dash_visualization.rotation = dashDirection.angle()
 	dash_visualization.show()
-	
-	await get_tree().create_timer(.5).timeout
-	
+	state = States.WAIT_DASH
+	await get_tree().create_timer(1).timeout
+	state = States.DASHING
 	dash_timer.start()
 	
 	velocity = dashDirection * dashSpeed * 2	
