@@ -62,7 +62,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Resource" id="Resource_m5mmn"]
+[sub_resource type="Resource" id="Resource_3j50y"]
 resource_local_to_scene = true
 script = ExtResource("3_tsxk6")
 power = 10
@@ -117,6 +117,7 @@ hurt_box = NodePath("HurtBox")
 sprite = NodePath("AnimatedSprite2D")
 ability_anim = NodePath("AnimationPlayer")
 cooldown = 0.5
+text = "A quick jab with a short cooldown"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -126,7 +127,7 @@ sprite_frames = SubResource("SpriteFrames_77dyp")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_sebol")]
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_m5mmn")
+hurt_component = SubResource("Resource_3j50y")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

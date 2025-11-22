@@ -4,6 +4,7 @@ signal finished
 
 @export var ability_anim : AnimationPlayer
 @export var cooldown : float
+@export var text : String
 
 func _ready() -> void:
 	ability_anim.play("Start")

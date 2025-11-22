@@ -25,8 +25,7 @@ var enemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
 
 func _ready() -> void:
 	splash_screen.modulate.a = 0
-	round_progress_bar.value = 0
-	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
+	update_round_counter()
 	set_level_stats()
 	play_splash_screen()
 

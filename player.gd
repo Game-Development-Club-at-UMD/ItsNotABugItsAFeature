@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 signal player_died
 
 const SPEED: int = 200
+
 var click_position = Vector2()
 var target_position = Vector2()
 
@@ -17,6 +18,7 @@ var target_position = Vector2()
 var instanced_item : Item = null
 
 func _ready() -> void:
+	hitbox.health_component.health = hitbox.health_component.max_health
 	player_died.connect(get_parent().player_died)
 	inventory.movement_visualization_updated.connect(update_movement_visualization)
 	inventory.update_movement_visualization()
@@ -33,8 +35,6 @@ func _process(delta: float) -> void:
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		hitbox.health_component.take_damage(100)
 	if Input.is_action_just_pressed("right_click"):
 		inventory.activate()
 	
@@ -52,5 +52,5 @@ func die():
 	player_died.emit()
 
 func update_movement_visualization(dir : Vector2):
-	print("instructed to update rotation")
+	#print("instructed to update rotation")
 	movement_visualization.rotation = dir.angle()

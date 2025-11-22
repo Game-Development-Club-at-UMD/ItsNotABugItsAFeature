@@ -115,9 +115,9 @@ _data = {
 script = ExtResource("1_17mbl")
 hurt_box = NodePath("HurtBox")
 sprite = NodePath("AnimatedSprite2D")
-knockback = 2000.0
 ability_anim = NodePath("AnimationPlayer")
 cooldown = 1.3
+text = "Attacks in a large area around the player"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

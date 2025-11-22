@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsv5ih6knxyxl"]
+[gd_scene load_steps=18 format=3 uid="uid://dsv5ih6knxyxl"]
 
 [ext_resource type="Script" uid="uid://wcnsakjm3t4m" path="res://Main/main.gd" id="1_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://cxittwhcv7xg" path="res://Items/ItemSpawner.tscn" id="3_ib3t1"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://dd8padwwgwlvi" path="res://Spawner/wave_system.tscn" id="5_k3v36"]
 [ext_resource type="Texture2D" uid="uid://bo2nu0thve200" path="res://Assets/debug_background.png" id="6_liyct"]
@@ -138,6 +139,10 @@ position = Vector2(-0.13964844, -1.2918701)
 scale = Vector2(4.704422, 3.1300468)
 texture = SubResource("NoiseTexture2D_f6fdm")
 
+[node name="ItemSpawner" parent="." instance=ExtResource("3_ib3t1")]
+position = Vector2(562, 301)
+scale = Vector2(0.5200006, 0.5200006)
+
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_2w1kt")]
@@ -180,4 +185,5 @@ visible = false
 z_index = 2
 offset_right = 1161.0
 offset_bottom = 654.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
