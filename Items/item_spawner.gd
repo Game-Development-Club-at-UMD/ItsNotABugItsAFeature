@@ -6,11 +6,13 @@ class_name ItemSpawner extends Node2D
 @onready var description_item: RichTextLabel = %DescriptionItem
 @onready var item_1_icon: TextureButton = %Item1
 @onready var item_1_text: RichTextLabel = %Item1Text
+@onready var line_2d: Line2D = $Line2D
 
-signal swap_items(new_item : Item, old_item : Item)
+signal player_chose_item
 
 enum States {ENABLED, DISABLED}
-var state : States = States.ENABLED
+var has_player : bool = false
+var state : States = States.DISABLED
 var item_1 : Item
 var item_2 : Item
 var player : Player = null
@@ -18,8 +20,9 @@ var spawned_item : Item
 var inventory : Inventory
 var available_items : Array[String] = [
 	"res://Items/another_item.tscn",
-	"res://Items/item.tscn"
+	"res://Items/item.tscn",
 ]
+var distance : float
 
 func _ready() -> void:
 	spawn_item()
@@ -35,33 +38,34 @@ func get_player():
 	await get_tree().root.ready
 	player = get_tree().get_first_node_in_group("Player")
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	match state:
 		States.ENABLED:
-			if Input.is_action_just_pressed("pickup item"):
+			distance = global_position.distance_to(player.global_position)
+			if Input.is_action_just_pressed("pickup item") && distance < 250:
 				give_player_new_item()
-				animation_player.play("fade_out")
-				await animation_player.animation_finished
-				disable()
+				print("player picked item!")
+			
+			line_2d.set_point_position(0, to_local(global_position))
+			line_2d.set_point_position(1, to_local(player.global_position))
+			distance = clamp(distance, 250, 500)
+			line_2d.modulate.a = remap(distance, 250, 500, 0, 1)
+			item_popup.modulate.a = remap(distance, 250, 500, 1, 0)
+		
 		States.DISABLED:
-			pass
-
-func enable():
-	item_popup.visible = true
-
-func disable():
-	item_popup.visible = false
+			line_2d.modulate.a = lerp(line_2d.modulate.a, 0.0, delta * 12)
+			item_popup.modulate.a = lerp(item_popup.modulate.a, 0.0, delta * 12)
 
 func give_player_new_item():
-	if player == null:
-		return
 	var packed_scene : PackedScene = PackedScene.new()
 	packed_scene.pack(spawned_item)
 	player.inventory.pickup_new_item(packed_scene)
+	player_chose_item.emit()
+	state = States.DISABLED
 
 func spawn_item():
 	available_items.shuffle()
-	spawned_item = load(available_items.pop_front()).instantiate() as Item
+	spawned_item = load(available_items.pick_random()).instantiate() as Item
 	spawned_item.visible = false
 	add_child(spawned_item)
 	icon_item.texture = spawned_item.icon.texture
@@ -69,13 +73,19 @@ func spawn_item():
 	var second_ability = spawned_item.second_ability.instantiate()
 	description_item.text = "[center]" + first_ability.text + "[br]" + second_ability.text
 
+func start_item_selection_phase():
+	spawn_item()
+	state = States.ENABLED
+
 func display_current_player_items(item : Item):
 	item_1_icon.texture_normal = item.icon.texture
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if state == States.ENABLED && body is Player:
-		animation_player.play("fade_in")
+	if body is Player:
+		has_player = true
+
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if state == States.ENABLED && body is Player:
-		animation_player.play("fade_out")
+	if body is not Player:
+		has_player = false

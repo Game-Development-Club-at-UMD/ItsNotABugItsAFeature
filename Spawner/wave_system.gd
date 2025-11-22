@@ -10,6 +10,8 @@ extends Node2D
 @onready var splash_screen_text: RichTextLabel = %SplashScreenText
 @onready var splash_screen: Control = %SplashScreen
 
+signal end_of_wave
+
 var wave: int = 0
 
 var spawn_counter: int = 0
@@ -32,7 +34,7 @@ func _ready() -> void:
 func finish_round():
 	print("End of round ", wave)
 	spawn_timer.stop()
-	
+	end_of_wave.emit()
 
 func update_round_counter():
 	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
@@ -45,7 +47,9 @@ func play_splash_screen():
 
 func next_round():
 	wave += 1
-	await play_splash_screen()
+	splash_screen_text.text = "[center][shake]Round: " + str(wave)
+	animation_player.play("RoundSplashScreen")
+	await animation_player.animation_finished
 	spawn_counter = 0
 	set_level_stats()
 	spawn_timer.start()
@@ -85,7 +89,6 @@ func _on_spawn_timer_timeout() -> void:
 	if spawn_counter == num_to_spawn:
 		if enemy_container.get_children().size() == 0:
 			finish_round()
-			next_round()
 		return
 	# Wave manager
 	var enemy_instance = enemy.instantiate()

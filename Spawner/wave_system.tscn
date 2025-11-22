@@ -111,7 +111,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 offset_left = 60.0
