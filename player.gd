@@ -22,6 +22,7 @@ func _ready() -> void:
 	player_died.connect(get_parent().player_died)
 	inventory.movement_visualization_updated.connect(update_movement_visualization)
 	inventory.update_movement_visualization()
+	
 
 func _process(delta: float) -> void:
 	move_vis_rotation_helper.look_at(get_global_mouse_position())
