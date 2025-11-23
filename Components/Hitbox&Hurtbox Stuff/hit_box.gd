@@ -7,6 +7,7 @@ class_name HitBox extends Area2D
 @export var hit_effect : ParticleEmitter
 @export var node_to_kill : Node
 
+
 @onready var invinc_timer: Timer = $InvincTimer
 
 var invinc_time : float = 0.5
@@ -42,7 +43,9 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if health_component != null:
 		health_component.take_damage((area as HurtBox).do_attack())
+		
 		# apply knockback
+		
 		var target_vector = node_to_kill.global_position.direction_to(area.global_position) * area.hurt_component.power
 		node_to_kill.velocity = lerp(node_to_kill.velocity, target_vector, 3)
 

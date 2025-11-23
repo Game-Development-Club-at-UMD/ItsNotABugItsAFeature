@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SFX" load_steps=4 format=3 uid="uid://cij2injsnj6et"]
+
+[ext_resource type="Script" uid="uid://ceu0rvy1ie3ye" path="res://Components/SFX-Xomponent.gd" id="1_x71nf"]
+[ext_resource type="AudioStream" uid="uid://yrfwjeomugoo" path="res://SFX/dash.wav" id="2_72lpk"]
+[ext_resource type="AudioStream" uid="uid://d2lulp3c68r44" path="res://SFX/player_melee.wav" id="2_a0o8g"]
+
+[resource]
+script = ExtResource("1_x71nf")
+attack_sounds = Array[AudioStream]([ExtResource("2_a0o8g")])
+hit_sounds = Array[AudioStream]([ExtResource("2_72lpk")])
+metadata/_custom_type_script = "uid://ceu0rvy1ie3ye"

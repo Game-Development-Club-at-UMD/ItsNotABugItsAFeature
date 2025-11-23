@@ -1,13 +1,14 @@
-[gd_scene load_steps=39 format=3 uid="uid://1sajrvnamtf7"]
+[gd_scene load_steps=40 format=3 uid="uid://1sajrvnamtf7"]
 
 [ext_resource type="Script" uid="uid://baj3pbwboyb4q" path="res://player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="2_btcbx"]
 [ext_resource type="PackedScene" uid="uid://by518sy8lvvdq" path="res://Items/Scenes/item.tscn" id="2_k53q1"]
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="3_gwnis"]
+[ext_resource type="Resource" uid="uid://cij2injsnj6et" path="res://SFX/Player/player_sfx.tres" id="3_p5o4e"]
 [ext_resource type="Texture2D" uid="uid://blvmur8hai3fg" path="res://Assets/MC_Front.png" id="3_x3vf3"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_apopc"]
 [ext_resource type="PackedScene" uid="uid://btgs2icui0x8c" path="res://Inventory/inventory.tscn" id="6_fhl08"]
-[ext_resource type="Script" uid="uid://b3au3idb4jsar" path="res://Player/Health_bar.gd" id="8_5htga"]
+[ext_resource type="Script" path="res://Player/Health_bar.gd" id="8_5htga"]
 [ext_resource type="Texture2D" uid="uid://bisphplyf2tev" path="res://Assets/MC_Back.png" id="8_apopc"]
 [ext_resource type="Texture2D" uid="uid://cfxq8i0jkk270" path="res://Assets/MC_Left.png" id="9_5htga"]
 [ext_resource type="Texture2D" uid="uid://ds27tocfp0hhr" path="res://Assets/MC_Right.png" id="10_p5o4e"]
@@ -193,6 +194,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 script = ExtResource("1_l8h54")
 hitbox = NodePath("HitBox")
 item = ExtResource("2_k53q1")
+player_sfx = ExtResource("3_p5o4e")
 
 [node name="MoveVisRotationHelper" type="Node2D" parent="."]
 
