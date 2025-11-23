@@ -64,6 +64,7 @@ shape = SubResource("CapsuleShape2D_4aq1r")
 unique_name_in_owner = true
 avoidance_enabled = true
 radius = 100.0
+debug_enabled = true
 
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_ga46k")]
 collision_layer = 0
