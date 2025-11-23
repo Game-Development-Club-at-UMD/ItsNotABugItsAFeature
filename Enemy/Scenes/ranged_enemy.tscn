@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kaculelvnd8m"]
+[gd_scene load_steps=35 format=3 uid="uid://kaculelvnd8m"]
 
 [ext_resource type="Script" uid="uid://bxn20024ywqsv" path="res://Enemy/Scripts/ranged_enemy.gd" id="1_se4dn"]
 [ext_resource type="PackedScene" uid="uid://d3fd1e3qgtub8" path="res://Enemy/Scenes/bullet.tscn" id="2_ga46k"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="4_ga46k"]
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_7hgoq"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_q5mxs"]
+[ext_resource type="Texture2D" uid="uid://swomc1p602gg" path="res://Assets/Enemy/Ranged/1B.PNG" id="9_7hgoq"]
+[ext_resource type="Texture2D" uid="uid://dcl4brd3ueqrj" path="res://Assets/Enemy/Ranged/2B.PNG" id="10_q5mxs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51qi3"]
 
@@ -39,6 +41,213 @@ bg_color = Color(1, 1, 1, 0.45882353)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1eptq"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_q5mxs"]
+resource_name = "idle_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2.5), Vector2(0, -2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_51qi3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_7hgoq")]
+}
+
+[sub_resource type="Animation" id="Animation_7hgoq"]
+resource_name = "idle_right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2.5), Vector2(0, -2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_ic5tx"]
+resource_name = "move_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_7hgoq"), ExtResource("10_q5mxs")]
+}
+
+[sub_resource type="Animation" id="Animation_4aq1r"]
+resource_name = "move_right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_7hgoq"), ExtResource("10_q5mxs")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ic5tx"]
+_data = {
+&"RESET": SubResource("Animation_51qi3"),
+&"idle_left": SubResource("Animation_q5mxs"),
+&"idle_right": SubResource("Animation_7hgoq"),
+&"move_left": SubResource("Animation_ic5tx"),
+&"move_right": SubResource("Animation_4aq1r")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q5mxs"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_51qi3"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ic5tx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q5mxs")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_51qi3")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ic5tx"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4aq1r"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4aq1r"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ic5tx")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_4aq1r")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sds5v"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q5mxs"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_51qi3"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_431s3"]
+states/End/position = Vector2(904, 100)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_ic5tx")
+states/Idle/position = Vector2(485, 58)
+states/Move/node = SubResource("AnimationNodeBlendSpace1D_4aq1r")
+states/Move/position = Vector2(485, 156)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_sds5v"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_q5mxs"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_51qi3")]
 
 [node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
 script = ExtResource("1_se4dn")
@@ -94,5 +303,21 @@ show_percentage = false
 
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.09259259, 0.0925926)
+texture = ExtResource("9_7hgoq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ic5tx")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
+tree_root = SubResource("AnimationNodeStateMachine_431s3")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = -0.0060606003
+parameters/Move/blend_position = 0.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
