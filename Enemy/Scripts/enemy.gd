@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@onready var player = get_tree().get_nodes_in_group("Player")[0]
+@onready var player : Player = get_tree().get_first_node_in_group("Player")
 @onready var navigation_agent_2d : NavigationAgent2D = %NavigationAgent2D as NavigationAgent2D
 @onready var hit_box : HitBox = $HitBox as HitBox
 
