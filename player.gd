@@ -25,6 +25,8 @@ func _ready() -> void:
 	inventory.movement_visualization_updated.connect(update_movement_visualization)
 	inventory.update_movement_visualization()
 	hitbox.health_component.healthChanged.connect(_on_health_changed)
+	inventory.item_activated.connect(item_activated)
+
 
 func _process(delta: float) -> void:
 	move_vis_rotation_helper.look_at(get_global_mouse_position())
@@ -43,11 +45,9 @@ func _process(delta: float) -> void:
 		
 	
 	if Input.is_action_just_pressed("right_click"):
-		inventory.activate()
-		var snd = player_sfx.get_random_sound("attack")
-		if snd:
-			audio.stream = snd 
-			audio.play()
+			inventory.activate()
+		
+			
 	
 	if Input.is_action_just_pressed("switch_item"):
 		inventory.swap_items()
@@ -59,6 +59,13 @@ func update_anim_parameters():
 	animation_tree.set("parameters/Idle/blend_position", velocity.normalized())
 	animation_tree.set("parameters/Walk/blend_position", velocity.normalized())
 	
+	
+func item_activated():
+	var snd = player_sfx.get_random_sound("attack")
+	if snd: 
+		audio.stream = snd 
+		audio.play()
+
 func _on_health_changed():
 	var snd = player_sfx.get_random_sound("hit")
 	if snd:

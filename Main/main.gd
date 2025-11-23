@@ -15,7 +15,6 @@ func _ready() -> void:
 	color_rect.visible = false
 	item_spawner.player_chose_item.connect(wave_system.next_round)
 	wave_system.end_of_wave.connect(item_spawner.start_item_selection_phase)
-
 ## signal connects from Player
 func player_died():
 	lost_game.emit()

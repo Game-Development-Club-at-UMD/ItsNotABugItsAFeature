@@ -14,14 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://ds27tocfp0hhr" path="res://Assets/MC_Right.png" id="10_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://dlm8am5bc47cs" path="res://Abilities/Scenes/movement_visualization.tscn" id="11_apopc"]
 
-[sub_resource type="Resource" id="Resource_5htga"]
+[sub_resource type="Resource" id="Resource_p5o4e"]
 resource_local_to_scene = true
 script = ExtResource("3_gwnis")
 health = 100
 max_health = 100
 metadata/_custom_type_script = "uid://86uwh70cdq33"
 
-[sub_resource type="Resource" id="Resource_p5o4e"]
+[sub_resource type="Resource" id="Resource_gu6f8"]
 resource_local_to_scene = true
 script = ExtResource("6_apopc")
 particle_color = Color(0.8602519, 0, 0.27400118, 1)
@@ -203,9 +203,9 @@ player_sfx = ExtResource("3_p5o4e")
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("2_btcbx")]
 collision_layer = 2
 collision_mask = 2
-health_component = SubResource("Resource_5htga")
+health_component = SubResource("Resource_p5o4e")
 collision_shape2D = NodePath("CollisionShape2D")
-hit_effect = SubResource("Resource_p5o4e")
+hit_effect = SubResource("Resource_gu6f8")
 node_to_kill = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]

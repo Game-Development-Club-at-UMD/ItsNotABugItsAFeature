@@ -14,4 +14,4 @@ func take_damage(amount : int):
 
 func heal(amount : int):
 	health = clampi(health + amount, 0, max_health)
-	healthChanged.emit()
+	
