@@ -4,6 +4,8 @@ extends Node2D
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
 @onready var item_spawner: ItemSpawner = $ItemSpawner
 @onready var wave_system: Node2D = $WaveSystem
+@onready var camera_2d: Camera2D = $Camera2D
+@onready var player : Player = get_tree().get_first_node_in_group("Player")
 
 signal lost_game
 
@@ -28,7 +30,10 @@ func ready_to_switch_scenes():
 	game_manager.lost_game(self)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	
+	camera_2d.global_position = lerp(camera_2d.global_position, player.global_position, delta * 8)
+	
 	if Input.is_action_just_pressed("exit"):
 		fade_player.play("fade_out")
 		await fade_player.animation_finished
