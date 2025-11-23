@@ -1,0 +1,178 @@
+[gd_scene load_steps=18 format=3 uid="uid://d3fd1e3qgtub8"]
+
+[ext_resource type="Script" uid="uid://bswx0onh87g02" path="res://Enemy/Scripts/bullet.gd" id="1_e216t"]
+[ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="1_xaxaq"]
+[ext_resource type="Texture2D" uid="uid://bhd7bsi2xnbv4" path="res://Assets/AbilityAnims/bullet.png" id="2_aktee"]
+[ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="2_e216t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14rpg"]
+atlas = ExtResource("2_aktee")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3o15"]
+atlas = ExtResource("2_aktee")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u603o"]
+atlas = ExtResource("2_aktee")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbm5l"]
+atlas = ExtResource("2_aktee")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e7et"]
+atlas = ExtResource("2_aktee")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goiw2"]
+atlas = ExtResource("2_aktee")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p447v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14rpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3o15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u603o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbm5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e7et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goiw2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aktee"]
+radius = 5.0990195
+
+[sub_resource type="Resource" id="Resource_14rpg"]
+script = ExtResource("2_e216t")
+power = 10
+metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3o15"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_aktee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e216t"]
+resource_name = "bullet_fade"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(20.39297, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(17.148375, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disable"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_14rpg"]
+_data = {
+&"RESET": SubResource("Animation_aktee"),
+&"bullet_fade": SubResource("Animation_e216t")
+}
+
+[node name="Bullet" type="CharacterBody2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_e216t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.7188349, 0.13021848, 1.92523e-07, 1)
+texture_filter = 1
+position = Vector2(2.9802322e-08, 5.9604645e-08)
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_p447v")
+frame = 2
+frame_progress = 0.8320582
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_aktee")
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("1_xaxaq")]
+visible = false
+collision_layer = 2
+collision_mask = 0
+hurt_component = SubResource("Resource_14rpg")
+collision_shape2D = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_c3o15")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_14rpg")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
