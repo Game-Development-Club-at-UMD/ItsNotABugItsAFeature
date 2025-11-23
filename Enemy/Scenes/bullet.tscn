@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3fd1e3qgtub8"]
+
+[ext_resource type="Script" uid="uid://bswx0onh87g02" path="res://Enemy/Scripts/bullet.gd" id="1_e216t"]
+[ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="1_xaxaq"]
+[ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="2_e216t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aktee"]
+radius = 5.0990195
+
+[sub_resource type="Resource" id="Resource_14rpg"]
+script = ExtResource("2_e216t")
+power = 10
+metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3o15"]
+radius = 7.0
+
+[node name="Bullet" type="CharacterBody2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_e216t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aktee")
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("1_xaxaq")]
+collision_layer = 2
+collision_mask = 0
+hurt_component = SubResource("Resource_14rpg")
+collision_shape2D = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_c3o15")

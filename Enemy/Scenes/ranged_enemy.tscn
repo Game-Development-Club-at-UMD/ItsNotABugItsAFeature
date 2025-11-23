@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://kaculelvnd8m"]
+
+[ext_resource type="Script" uid="uid://bxn20024ywqsv" path="res://Enemy/Scripts/ranged_enemy.gd" id="1_se4dn"]
+[ext_resource type="PackedScene" uid="uid://d3fd1e3qgtub8" path="res://Enemy/Scenes/bullet.tscn" id="2_ga46k"]
+[ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_lxedy"]
+[ext_resource type="PackedScene" uid="uid://dvpodtds0af3b" path="res://Enemy/Scenes/healing_hurt_box.tscn" id="2_nwq0y"]
+[ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_nwq0y"]
+[ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="4_ga46k"]
+[ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_7hgoq"]
+[ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_q5mxs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51qi3"]
+
+[sub_resource type="Resource" id="Resource_ic5tx"]
+script = ExtResource("3_nwq0y")
+power = 10
+metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4aq1r"]
+radius = 11.0
+height = 32.0
+
+[sub_resource type="Resource" id="Resource_sds5v"]
+script = ExtResource("5_7hgoq")
+health = 20
+max_health = 20
+metadata/_custom_type_script = "uid://86uwh70cdq33"
+
+[sub_resource type="Resource" id="Resource_431s3"]
+script = ExtResource("6_q5mxs")
+metadata/_custom_type_script = "uid://c8xnefd6fkw30"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kgq1g"]
+radius = 11.0
+height = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcbwm"]
+bg_color = Color(1, 1, 1, 0.45882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1eptq"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+script = ExtResource("1_se4dn")
+shoot_threshold = 150.0
+projectile = ExtResource("2_ga46k")
+init_proj_velocity = 150.0
+healthbar = NodePath("HealthBar")
+heal_hurtbox_scene = ExtResource("2_nwq0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_51qi3")
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_lxedy")]
+collision_layer = 2
+collision_mask = 0
+hurt_component = SubResource("Resource_ic5tx")
+collision_shape2D = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_4aq1r")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+avoidance_enabled = true
+radius = 100.0
+
+[node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_ga46k")]
+collision_layer = 0
+collision_mask = 4
+health_component = SubResource("Resource_sds5v")
+collision_shape2D = NodePath("CollisionShape2D")
+hit_effect = SubResource("Resource_431s3")
+node_to_kill = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_kgq1g")
+
+[node name="DashTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.516
+one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -10.000002
+offset_top = -22.0
+offset_right = 199.99998
+offset_bottom = 5.0
+scale = Vector2(0.1, 0.1)
+theme_override_styles/background = SubResource("StyleBoxFlat_gcbwm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1eptq")
+show_percentage = false
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
