@@ -42,7 +42,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
 script = ExtResource("1_se4dn")
-shoot_threshold = 150.0
+shoot_threshold = 400.0
 projectile = ExtResource("2_ga46k")
 init_proj_velocity = 150.0
 healthbar = NodePath("HealthBar")
