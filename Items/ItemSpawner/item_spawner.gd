@@ -43,10 +43,14 @@ func get_player():
 func _process(delta: float) -> void:
 	match state:
 		States.ENABLED:
+			
 			distance = global_position.distance_to(player.global_position)
+			
 			if Input.is_action_just_pressed("pickup item") && distance < 250:
 				give_player_new_item()
-				print("player picked item!")
+				next_round()
+			if Input.is_action_just_pressed("decline item") && distance < 250:
+				next_round()
 			
 			line_2d.set_point_position(0, to_local(global_position))
 			line_2d.set_point_position(1, to_local(player.global_position))
@@ -62,6 +66,8 @@ func give_player_new_item():
 	var packed_scene : PackedScene = PackedScene.new()
 	packed_scene.pack(spawned_item)
 	player.inventory.pickup_new_item(packed_scene)
+
+func next_round():
 	player_chose_item.emit()
 	state = States.DISABLED
 
