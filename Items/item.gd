@@ -39,7 +39,7 @@ func activate():
 	await first_action.finished
 	
 	var second_action =  activate_ability(second_ability)
-	cooldown = max(second_action.cooldown, cooldown)
+	cooldown += second_action.cooldown
 	await second_action.finished
 	
 	is_running = false

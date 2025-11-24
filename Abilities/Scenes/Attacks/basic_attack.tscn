@@ -95,10 +95,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Resource" id="Resource_5d868"]
+[sub_resource type="Resource" id="Resource_4jvav"]
 resource_local_to_scene = true
 script = ExtResource("3_w0nyu")
-power = 50
+power = 20
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0oc5y"]
@@ -251,6 +251,7 @@ cooldown = 1.0
 text = "Basic forward attack"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 position = Vector2(53.999996, -1.9073486e-06)
 rotation = 1.5707964
@@ -260,11 +261,12 @@ frame = 10
 frame_progress = 1.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_fh7ky")]
+show_behind_parent = true
 position = Vector2(5, 0)
 scale = Vector2(1.8478478, 1.7239369)
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_5d868")
+hurt_component = SubResource("Resource_4jvav")
 collision_shape2D = NodePath("2")
 
 [node name="3" type="CollisionShape2D" parent="HurtBox"]

@@ -9,11 +9,12 @@ var target_position = Vector2()
 
 var am_i_fucking_waiting : bool = false
 
+@onready var footstep_player: AudioStreamPlayer2D = $FootstepPlayer
+@onready var hit_effect_player: AudioStreamPlayer2D = $HitEffectPlayer
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var move_vis_rotation_helper: Node2D = $MoveVisRotationHelper
 @onready var movement_visualization: Node2D = $MoveVisRotationHelper/MovementVisualization
-
 
 @export var hitbox : HitBox
 @export var item : PackedScene
@@ -29,6 +30,7 @@ func _ready() -> void:
 	inventory.movement_visualization_updated.connect(update_movement_visualization)
 	inventory.update_movement_visualization()
 	inventory.item_finished.connect(end_attacking)
+	hitbox.hit.connect(i_was_hit)
 	
 
 func _process(delta: float) -> void:
@@ -36,6 +38,8 @@ func _process(delta: float) -> void:
 	match state:
 		States.PlAYER_MOVE:
 			if Input.is_action_pressed("left_click"):
+				if footstep_player.playing == false || footstep_player.get_playback_position() > 0.5:
+					footstep_player.play()
 				target_position = (get_global_mouse_position() - global_position).normalized()
 				if (get_global_mouse_position() - global_position).length() > 5:
 					velocity = lerp(velocity, target_position * SPEED, 12 * delta)
@@ -71,8 +75,10 @@ func update_anim_parameters():
 func die():
 	player_died.emit()
 
+func i_was_hit():
+	hit_effect_player.play()
+
 func end_attacking():
-	print('pee')
 	state = States.PlAYER_MOVE
 
 #func waitForAttacking():

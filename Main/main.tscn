@@ -1,20 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dsv5ih6knxyxl"]
+[gd_scene load_steps=13 format=3 uid="uid://dsv5ih6knxyxl"]
 
 [ext_resource type="Script" uid="uid://wcnsakjm3t4m" path="res://Main/main.gd" id="1_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
-[ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_2w1kt"]
 [ext_resource type="Texture2D" uid="uid://bt4y35ytc4b6w" path="res://Assets/BG.png" id="2_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://cxittwhcv7xg" path="res://Items/ItemSpawner/ItemSpawner.tscn" id="3_ib3t1"]
-[ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://dd8padwwgwlvi" path="res://Spawner/wave_system.tscn" id="5_k3v36"]
-
-[sub_resource type="Resource" id="Resource_eunhr"]
-script = ExtResource("3_qvhan")
-power = 10
-metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvhan"]
-size = Vector2(61.5, 188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6fdm"]
 size = Vector2(148, 2720)
@@ -130,6 +120,7 @@ limit_bottom = 1020
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(569, 302)
 scale = Vector2(0.30442306, 0.30442306)
 texture = ExtResource("2_ib3t1")
@@ -141,17 +132,6 @@ scale = Vector2(0.5200006, 0.5200006)
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
 scale = Vector2(1.2, 1.2)
 collision_mask = 129
-
-[node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_2w1kt")]
-collision_layer = 2
-collision_mask = 0
-hurt_component = SubResource("Resource_eunhr")
-collision_shape2D = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(252, 198)
-shape = SubResource("RectangleShape2D_qvhan")
-debug_color = Color(0.99997133, 0, 0.11064974, 0.41960785)
 
 [node name="Walls" type="Node2D" parent="."]
 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg71y3uja8h56"]
+[gd_scene load_steps=8 format=3 uid="uid://cg71y3uja8h56"]
 
 [ext_resource type="Script" uid="uid://d1b8wx31o0rh0" path="res://Abilities/Scripts/movement_ability.gd" id="1_c65ln"]
+[ext_resource type="AudioStream" uid="uid://c3yuyvbid18fj" path="res://Assets/SFX/Dash/WHSH_MOVEMENT-Simple Whoosh_HY_PC-001.wav" id="2_1l2mm"]
+[ext_resource type="AudioStream" uid="uid://c8e4x5o1ntl85" path="res://Assets/SFX/Dash/WHSH_MOVEMENT-Simple Whoosh_HY_PC-002.wav" id="3_sdo0v"]
+[ext_resource type="AudioStream" uid="uid://sdw2px2uje1x" path="res://Assets/SFX/Dash/WHSH_MOVEMENT-Simple Whoosh_HY_PC-003.wav" id="4_ldirx"]
 
 [sub_resource type="Animation" id="Animation_662ce"]
 resource_name = "Start"
-length = 0.01
+length = 1.14
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -12,11 +15,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"apply_velocity_to_player"
+}, {
+"args": [],
+"method": &"finish"
 }]
 }
 
@@ -24,6 +30,12 @@ tracks/0/keys = {
 _data = {
 &"Start": SubResource("Animation_662ce")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kkxs0"]
+streams_count = 3
+stream_0/stream = ExtResource("2_1l2mm")
+stream_1/stream = ExtResource("3_sdo0v")
+stream_2/stream = ExtResource("4_ldirx")
 
 [node name="DownDash" type="Node2D" node_paths=PackedStringArray("ability_anim")]
 script = ExtResource("1_c65ln")
@@ -37,3 +49,7 @@ text = "Dash forwards"
 libraries = {
 &"": SubResource("AnimationLibrary_akdia")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kkxs0")
+autoplay = true

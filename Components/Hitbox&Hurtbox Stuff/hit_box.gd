@@ -1,6 +1,6 @@
 class_name HitBox extends Area2D
 
-
+signal hit
 
 @export var health_component : HealthComponent
 @export var collision_shape2D : CollisionShape2D
@@ -35,7 +35,7 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	if !invinc_timer.is_stopped():
 		return
-	
+	hit.emit()
 	do_hit_effect()
 	invinc_timer.start(invinc_time)
 	

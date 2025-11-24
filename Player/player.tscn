@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://1sajrvnamtf7"]
+[gd_scene load_steps=46 format=3 uid="uid://1sajrvnamtf7"]
 
 [ext_resource type="Script" uid="uid://baj3pbwboyb4q" path="res://player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="2_btcbx"]
@@ -12,15 +12,20 @@
 [ext_resource type="Texture2D" uid="uid://cfxq8i0jkk270" path="res://Assets/MC_Left.png" id="9_5htga"]
 [ext_resource type="Texture2D" uid="uid://ds27tocfp0hhr" path="res://Assets/MC_Right.png" id="10_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://dlm8am5bc47cs" path="res://Abilities/Scenes/movement_visualization.tscn" id="11_apopc"]
+[ext_resource type="AudioStream" uid="uid://ojv3bxnymwpr" path="res://Assets/SFX/FGHTImpt_HIT-Strong_Smack_HY_PC-004[1].wav" id="13_p5o4e"]
+[ext_resource type="AudioStream" uid="uid://do3bouyumgn6g" path="res://Assets/SFX/Footsteps/GRASS - Walk short 1.wav" id="14_gu6f8"]
+[ext_resource type="AudioStream" uid="uid://g32v1o4mkqf8" path="res://Assets/SFX/Footsteps/GRASS - Walk short 2.wav" id="15_pisgm"]
+[ext_resource type="AudioStream" uid="uid://h2k1io856jk6" path="res://Assets/SFX/Footsteps/GRASS - Walk short 3.wav" id="16_b1ygp"]
+[ext_resource type="AudioStream" uid="uid://0e6psk8fgmxl" path="res://Assets/SFX/Footsteps/GRASS - Walk short 4.wav" id="17_o28un"]
 
-[sub_resource type="Resource" id="Resource_5htga"]
+[sub_resource type="Resource" id="Resource_n471f"]
 resource_local_to_scene = true
 script = ExtResource("3_gwnis")
 health = 100
 max_health = 100
 metadata/_custom_type_script = "uid://86uwh70cdq33"
 
-[sub_resource type="Resource" id="Resource_p5o4e"]
+[sub_resource type="Resource" id="Resource_7emwf"]
 resource_local_to_scene = true
 script = ExtResource("6_apopc")
 particle_color = Color(0.8602519, 0, 0.27400118, 1)
@@ -209,6 +214,18 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_qemgg")
 states/Walk/position = Vector2(514, 163)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_8viyr"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_sm0op"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_76lrf")]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lfmf2"]
+random_pitch = 3.73
+streams_count = 1
+stream_0/stream = ExtResource("13_p5o4e")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gu6f8"]
+streams_count = 4
+stream_0/stream = ExtResource("14_gu6f8")
+stream_1/stream = ExtResource("15_pisgm")
+stream_2/stream = ExtResource("16_b1ygp")
+stream_3/stream = ExtResource("17_o28un")
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox") groups=["Player"]]
 script = ExtResource("1_l8h54")
 hitbox = NodePath("HitBox")
@@ -224,9 +241,9 @@ current = true
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("2_btcbx")]
 collision_layer = 2
 collision_mask = 2
-health_component = SubResource("Resource_5htga")
+health_component = SubResource("Resource_n471f")
 collision_shape2D = NodePath("CollisionShape2D")
-hit_effect = SubResource("Resource_p5o4e")
+hit_effect = SubResource("Resource_7emwf")
 node_to_kill = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -275,3 +292,9 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0, 0)
+
+[node name="HitEffectPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lfmf2")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gu6f8")

@@ -11,6 +11,6 @@ func _ready():
 	
 
 func update():
-
+	@warning_ignore("integer_division")
 	value = Hitbox.health_component.health * 100 / Hitbox.health_component.max_health
 	 	

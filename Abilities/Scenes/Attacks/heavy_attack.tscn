@@ -91,10 +91,10 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="Resource" id="Resource_0ysy4"]
+[sub_resource type="Resource" id="Resource_ckbiw"]
 resource_local_to_scene = true
 script = ExtResource("3_3wn3r")
-power = 20
+power = 30
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cya5m"]
@@ -241,14 +241,16 @@ stream_3/stream = ExtResource("8_t3t5c")
 stream_4/stream = ExtResource("9_wy6hp")
 
 [node name="HeavyAttack" type="Node2D" node_paths=PackedStringArray("hurt_box", "sprite", "ability_anim")]
+show_behind_parent = true
 script = ExtResource("1_lf746")
 hurt_box = NodePath("HurtBox")
 sprite = NodePath("AnimatedSprite2D")
 ability_anim = NodePath("AnimationPlayer")
-cooldown = 1.5
+cooldown = 2.0
 text = "Strong forward attack"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 position = Vector2(27.000004, 3.999999)
 rotation = 0.9279041
@@ -262,7 +264,7 @@ position = Vector2(-10, 0.99999994)
 scale = Vector2(1.6725341, 1.7145925)
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_0ysy4")
+hurt_component = SubResource("Resource_ckbiw")
 collision_shape2D = NodePath("1")
 
 [node name="1" type="CollisionShape2D" parent="HurtBox"]

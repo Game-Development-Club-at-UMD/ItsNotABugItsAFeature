@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bsqbuuw2ffo4"]
+[gd_scene load_steps=41 format=3 uid="uid://bsqbuuw2ffo4"]
 
 [ext_resource type="Script" uid="uid://m16nutlje5jc" path="res://Enemy/Scripts/Fly_enemy.gd" id="1_x7ndy"]
 [ext_resource type="PackedScene" uid="uid://dvpodtds0af3b" path="res://Enemy/Scenes/healing_hurt_box.tscn" id="2_dkaax"]
@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_r5arg"]
 [ext_resource type="Texture2D" uid="uid://83a8hjs087i5" path="res://Assets/Enemy/Fly/1L.PNG" id="8_5g3o4"]
 [ext_resource type="Texture2D" uid="uid://brv3xhwsomogq" path="res://Assets/Enemy/Fly/2L.PNG" id="9_nqfhv"]
+[ext_resource type="AudioStream" uid="uid://c4rccwa2ohjdv" path="res://Assets/SFX/Enemy Death/Enemy-Hurt.wav" id="10_8w01i"]
+[ext_resource type="AudioStream" uid="uid://uqsv4sx8acej" path="res://Assets/SFX/Default Buzz.wav" id="11_hho1d"]
+[ext_resource type="AudioStream" uid="uid://1hysghw8peim" path="res://Assets/SFX/Bee Spawn 2.wav" id="12_1rq21"]
+[ext_resource type="AudioStream" uid="uid://bffom1yyd3vad" path="res://Assets/SFX/Bee Spawn.wav" id="13_n7kh7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3v6e"]
 
@@ -21,7 +25,7 @@ metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 radius = 11.0
 height = 32.0
 
-[sub_resource type="Resource" id="Resource_nqfhv"]
+[sub_resource type="Resource" id="Resource_30vux"]
 resource_local_to_scene = true
 script = ExtResource("5_8rrkr")
 health = 10
@@ -249,8 +253,23 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_30vux")
 states/Move/position = Vector2(424, 138)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1rq21"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_n7kh7"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fqici")]
 
-[node name="fly_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["enemy"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_30vux"]
+random_pitch = 3.73
+streams_count = 1
+stream_0/stream = ExtResource("10_8w01i")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hho1d"]
+streams_count = 1
+stream_0/stream = ExtResource("11_hho1d")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fqici"]
+streams_count = 2
+stream_0/stream = ExtResource("12_1rq21")
+stream_1/stream = ExtResource("13_n7kh7")
+
+[node name="fly_enemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_effect_player", "healthbar") groups=["enemy"]]
 script = ExtResource("1_x7ndy")
+hit_effect_player = NodePath("HitEffect")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_dkaax")
 
@@ -273,7 +292,7 @@ avoidance_enabled = true
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_ghd4p")]
 collision_layer = 0
 collision_mask = 4
-health_component = SubResource("Resource_nqfhv")
+health_component = SubResource("Resource_30vux")
 collision_shape2D = NodePath("CollisionShape2D")
 hit_effect = SubResource("Resource_5g3o4")
 node_to_kill = NodePath("..")
@@ -312,5 +331,17 @@ advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = 0.0
 parameters/Move/blend_position = 0.0
+
+[node name="HitEffect" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_30vux")
+volume_db = 2.019
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_hho1d")
+volume_db = -4.995
+autoplay = true
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fqici")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
