@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dtl61m7bvusg"]
+[gd_scene load_steps=41 format=3 uid="uid://dtl61m7bvusg"]
 
 [ext_resource type="Script" uid="uid://bs7yaq7gomar5" path="res://Enemy/Scripts/Dash_enemy.gd" id="1_tvo0k"]
 [ext_resource type="PackedScene" uid="uid://dvpodtds0af3b" path="res://Enemy/Scenes/healing_hurt_box.tscn" id="2_6djl0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_brb1q"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_jpr3n"]
 [ext_resource type="PackedScene" uid="uid://dlm8am5bc47cs" path="res://Abilities/Scenes/movement_visualization.tscn" id="7_qou4v"]
+[ext_resource type="PackedScene" uid="uid://c6v2s2m56205m" path="res://Enemy/Attack_Indicator/sprite_2d.tscn" id="8_0y8qy"]
 [ext_resource type="Texture2D" uid="uid://ddp2p27qvl8b5" path="res://Assets/Enemy/Dash/1F.PNG" id="9_idvar"]
 [ext_resource type="Texture2D" uid="uid://vyvyhradp17q" path="res://Assets/Enemy/Dash/2F.PNG" id="10_x26mw"]
 [ext_resource type="AudioStream" uid="uid://c4rccwa2ohjdv" path="res://Assets/SFX/Enemy Death/Enemy-Hurt.wav" id="11_x26mw"]
@@ -17,7 +18,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvo0k"]
 
-[sub_resource type="Resource" id="Resource_3kh2t"]
+[sub_resource type="Resource" id="Resource_bgasx"]
 resource_local_to_scene = true
 script = ExtResource("3_6djl0")
 power = 10
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 radius = 11.0
 height = 32.0
 
-[sub_resource type="Resource" id="Resource_e6pp7"]
+[sub_resource type="Resource" id="Resource_3kh2t"]
 resource_local_to_scene = true
 script = ExtResource("5_brb1q")
 health = 20
@@ -274,9 +275,6 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_x26mw")
 states/Move/position = Vector2(522, 125)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_l630y"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_0y8qy"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_bgasx")]
 
-[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_waring", "healthbar") groups=["enemy"]]
-script = ExtResource("1_tvo0k")
-attack_waring = NodePath("attack_warning")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l630y"]
 random_pitch = 3.12
 streams_count = 1
@@ -291,8 +289,9 @@ streams_count = 2
 stream_0/stream = ExtResource("13_0y8qy")
 stream_1/stream = ExtResource("14_bgasx")
 
-[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_effect_player", "healthbar") groups=["enemy"]]
+[node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_waring", "hit_effect_player", "healthbar") groups=["enemy"]]
 script = ExtResource("1_tvo0k")
+attack_waring = NodePath("attack_warning")
 hit_effect_player = NodePath("HitEffect")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_6djl0")
@@ -304,7 +303,7 @@ shape = SubResource("CapsuleShape2D_tvo0k")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_jpr3n")]
 collision_layer = 2
 collision_mask = 0
-hurt_component = SubResource("Resource_3kh2t")
+hurt_component = SubResource("Resource_bgasx")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -320,7 +319,7 @@ debug_path_custom_line_width = 0.65
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_18mdo")]
 collision_layer = 0
 collision_mask = 4
-health_component = SubResource("Resource_e6pp7")
+health_component = SubResource("Resource_3kh2t")
 collision_shape2D = NodePath("CollisionShape2D")
 hit_effect = SubResource("Resource_brb1q")
 node_to_kill = NodePath("..")
@@ -342,6 +341,10 @@ offset_bottom = 6.000002
 scale = Vector2(0.1, 0.1)
 show_percentage = false
 
+[node name="attack_warning" parent="." instance=ExtResource("8_0y8qy")]
+position = Vector2(-3.8146973e-06, -39)
+scale = Vector2(0.052767586, 0.052767586)
+
 [node name="DashVisRotationHelper" type="Node2D" parent="."]
 
 [node name="DashVisualization" parent="DashVisRotationHelper" instance=ExtResource("7_qou4v")]
@@ -362,9 +365,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = 0.0
 parameters/Move/blend_position = -0.5888889
 
-[node name="attack_warning" parent="." instance=ExtResource("12_dulps")]
-position = Vector2(0, -33.000008)
-scale = Vector2(0.047128487, 0.047128487)
 [node name="HitEffect" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_l630y")
 volume_db = 4.039

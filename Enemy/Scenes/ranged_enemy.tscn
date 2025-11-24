@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://kaculelvnd8m"]
+[gd_scene load_steps=43 format=3 uid="uid://kaculelvnd8m"]
 
 [ext_resource type="Script" uid="uid://bxn20024ywqsv" path="res://Enemy/Scripts/ranged_enemy.gd" id="1_se4dn"]
 [ext_resource type="PackedScene" uid="uid://d3fd1e3qgtub8" path="res://Enemy/Scenes/bullet.tscn" id="2_ga46k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_7hgoq"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_q5mxs"]
 [ext_resource type="Texture2D" uid="uid://swomc1p602gg" path="res://Assets/Enemy/Ranged/1B.PNG" id="9_7hgoq"]
+[ext_resource type="PackedScene" uid="uid://c6v2s2m56205m" path="res://Enemy/Attack_Indicator/sprite_2d.tscn" id="9_431s3"]
 [ext_resource type="Texture2D" uid="uid://dcl4brd3ueqrj" path="res://Assets/Enemy/Ranged/2B.PNG" id="10_q5mxs"]
 [ext_resource type="AudioStream" uid="uid://c4rccwa2ohjdv" path="res://Assets/SFX/Enemy Death/Enemy-Hurt.wav" id="11_51qi3"]
 [ext_resource type="AudioStream" uid="uid://uqsv4sx8acej" path="res://Assets/SFX/Default Buzz.wav" id="12_sds5v"]
@@ -17,7 +18,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51qi3"]
 
-[sub_resource type="Resource" id="Resource_gcbwm"]
+[sub_resource type="Resource" id="Resource_sds5v"]
 resource_local_to_scene = true
 script = ExtResource("3_nwq0y")
 power = 10
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 radius = 11.0
 height = 32.0
 
-[sub_resource type="Resource" id="Resource_1eptq"]
+[sub_resource type="Resource" id="Resource_kgq1g"]
 resource_local_to_scene = true
 script = ExtResource("5_7hgoq")
 health = 20
@@ -255,7 +256,6 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_4aq1r")
 states/Move/position = Vector2(485, 156)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_sds5v"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_q5mxs"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_51qi3")]
 
-[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_waring", "healthbar")]
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ic5tx"]
 random_pitch = 2.82
 streams_count = 1
@@ -270,7 +270,7 @@ streams_count = 2
 stream_0/stream = ExtResource("13_431s3")
 stream_1/stream = ExtResource("14_kgq1g")
 
-[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("hit_effect_player", "healthbar")]
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_waring", "hit_effect_player", "healthbar")]
 script = ExtResource("1_se4dn")
 shoot_threshold = 400.0
 projectile = ExtResource("2_ga46k")
@@ -286,7 +286,7 @@ shape = SubResource("CapsuleShape2D_51qi3")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_lxedy")]
 collision_layer = 2
 collision_mask = 0
-hurt_component = SubResource("Resource_gcbwm")
+hurt_component = SubResource("Resource_sds5v")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -300,7 +300,7 @@ radius = 100.0
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_ga46k")]
 collision_layer = 0
 collision_mask = 4
-health_component = SubResource("Resource_1eptq")
+health_component = SubResource("Resource_kgq1g")
 collision_shape2D = NodePath("CollisionShape2D")
 hit_effect = SubResource("Resource_431s3")
 node_to_kill = NodePath("..")
@@ -326,6 +326,10 @@ show_percentage = false
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="attack_warning" parent="." instance=ExtResource("9_431s3")]
+position = Vector2(0, -45)
+scale = Vector2(0.056526985, 0.05652698)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.09259259, 0.0925926)
 texture = ExtResource("9_7hgoq")
@@ -342,9 +346,6 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = -0.0060606003
 parameters/Move/blend_position = 0.0
 
-[node name="attack_warning" parent="." instance=ExtResource("12_ic5tx")]
-position = Vector2(0, -36.000004)
-scale = Vector2(0.047128487, 0.047128487)
 [node name="HitEffectPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ic5tx")
 volume_db = 3.271

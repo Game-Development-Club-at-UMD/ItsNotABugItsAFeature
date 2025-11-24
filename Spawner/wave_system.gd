@@ -23,9 +23,12 @@ var attack: int
 var timer_spawn: float = 3.0
 var num_to_spawn: int = 10
 
-const RANGED_ENEMY = preload("uid://kaculelvnd8m")
-const FLY_ENEMY = preload("uid://bsqbuuw2ffo4")
-const DASH_ENEMY = preload("uid://dtl61m7bvusg")
+#const RANGED_ENEMY = preload("uid://kaculelvnd8m")
+#const FLY_ENEMY = preload("uid://bsqbuuw2ffo4")
+#const DASH_ENEMY = preload("uid://dtl61m7bvusg")
+const DASH_ENEMY = "res://Enemy/Scenes/dash_enemy.tscn"
+const FLY_ENEMY = "res://Enemy/Scenes/fly_enemy.tscn"
+const RANGED_ENEMY = "res://Enemy/Scenes/ranged_enemy.tscn"
 
 var enemy_arr = [DASH_ENEMY, FLY_ENEMY, RANGED_ENEMY]
 
@@ -95,7 +98,7 @@ func _on_spawn_timer_timeout() -> void:
 			finish_round()
 		return
 	# Wave manager	
-	var enemy_instance = enemy_arr.pick_random().instantiate()
+	var enemy_instance = load(enemy_arr.pick_random()).instantiate()
 	
 	var spawnpoint = get_tree().get_nodes_in_group("spawn").pick_random()
 	
