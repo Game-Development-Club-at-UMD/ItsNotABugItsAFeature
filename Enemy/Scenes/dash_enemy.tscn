@@ -17,18 +17,20 @@
 [ext_resource type="AudioStream" uid="uid://bffom1yyd3vad" path="res://Assets/SFX/Bee Spawn.wav" id="14_bgasx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvo0k"]
+radius = 17.0
+height = 48.0
 
-[sub_resource type="Resource" id="Resource_bgasx"]
+[sub_resource type="Resource" id="Resource_0y8qy"]
 resource_local_to_scene = true
 script = ExtResource("3_6djl0")
 power = 10
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6djl0"]
-radius = 11.0
-height = 32.0
+radius = 18.0
+height = 50.0
 
-[sub_resource type="Resource" id="Resource_3kh2t"]
+[sub_resource type="Resource" id="Resource_bgasx"]
 resource_local_to_scene = true
 script = ExtResource("5_brb1q")
 health = 20
@@ -41,8 +43,8 @@ particle_color = Color(2.4065375e-06, 0.78313017, 0.28045723, 1)
 metadata/_custom_type_script = "uid://c8xnefd6fkw30"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3ece"]
-radius = 11.0
-height = 32.0
+radius = 18.0
+height = 50.0
 
 [sub_resource type="Animation" id="Animation_dulps"]
 length = 0.001
@@ -293,7 +295,7 @@ stream_1/stream = ExtResource("14_bgasx")
 script = ExtResource("1_tvo0k")
 attack_waring = NodePath("attack_warning")
 hit_effect_player = NodePath("HitEffect")
-healthbar = NodePath("HealthBar")
+healthbar = NodePath("Health_Bar")
 heal_hurtbox_scene = ExtResource("2_6djl0")
 metadata/_custom_type_script = "uid://brj6c1kggd6lh"
 
@@ -303,7 +305,7 @@ shape = SubResource("CapsuleShape2D_tvo0k")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_jpr3n")]
 collision_layer = 2
 collision_mask = 0
-hurt_component = SubResource("Resource_bgasx")
+hurt_component = SubResource("Resource_0y8qy")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -319,7 +321,7 @@ debug_path_custom_line_width = 0.65
 [node name="HitBox" parent="." node_paths=PackedStringArray("collision_shape2D", "node_to_kill") instance=ExtResource("4_18mdo")]
 collision_layer = 0
 collision_mask = 4
-health_component = SubResource("Resource_3kh2t")
+health_component = SubResource("Resource_bgasx")
 collision_shape2D = NodePath("CollisionShape2D")
 hit_effect = SubResource("Resource_brb1q")
 node_to_kill = NodePath("..")
@@ -332,17 +334,18 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="Health_Bar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -9.999998
-offset_top = -20.999998
+offset_left = -10.0
+offset_top = -29.0
 offset_right = 200.0
-offset_bottom = 6.000002
+offset_bottom = -2.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="attack_warning" parent="." instance=ExtResource("8_0y8qy")]
-position = Vector2(-3.8146973e-06, -39)
+position = Vector2(-2.2737368e-13, -46)
 scale = Vector2(0.052767586, 0.052767586)
 
 [node name="DashVisRotationHelper" type="Node2D" parent="."]
@@ -350,7 +353,7 @@ scale = Vector2(0.052767586, 0.052767586)
 [node name="DashVisualization" parent="DashVisRotationHelper" instance=ExtResource("7_qou4v")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.065, 0.065)
+scale = Vector2(0.1172401, 0.1172401)
 texture = ExtResource("9_idvar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
@@ -371,11 +374,12 @@ volume_db = 4.039
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_3bxy5")
-volume_db = -4.995
+volume_db = -10.0
 autoplay = true
 
 [node name="Spawn" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_rva1w")
+volume_db = -7.0
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

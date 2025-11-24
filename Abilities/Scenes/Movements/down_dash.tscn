@@ -43,7 +43,7 @@ direction = 3
 power = 10.0
 ability_anim = NodePath("AnimationPlayer")
 cooldown = 2.0
-text = "Dash forwards"
+text = "Dash downwards"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
