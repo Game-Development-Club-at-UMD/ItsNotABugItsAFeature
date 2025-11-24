@@ -235,6 +235,7 @@ offset_bottom = -257.0
 nine_patch_stretch = true
 texture_under = ExtResource("10_dkpta")
 texture_progress = ExtResource("9_gu6f8")
+tint_under = Color(0.49411765, 0.49411765, 0.49411765, 1)
 script = ExtResource("8_5htga")
 Hitbox = NodePath("../../HitBox")
 
