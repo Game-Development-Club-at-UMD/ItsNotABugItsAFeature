@@ -5,6 +5,7 @@ func start_text_shake(node: Node, display_text: String):
 
 func stop_text_shake(node: Node, display_text: String):
 	node.text = "[center]" + display_text + "[/center]"
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -14,8 +15,15 @@ func _process(delta: float) -> void:
 	pass
 
 
+# Redirection
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main/main.tscn")
+	
+func _on_settings_pressed() -> void:
+	get_tree().change_scene_to_file("res://Menus/settings.tscn")
+
+func _on_credits_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
