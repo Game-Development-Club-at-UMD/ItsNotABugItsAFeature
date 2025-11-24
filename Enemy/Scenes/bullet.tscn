@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d3fd1e3qgtub8"]
+[gd_scene load_steps=26 format=3 uid="uid://d3fd1e3qgtub8"]
 
 [ext_resource type="Script" uid="uid://bswx0onh87g02" path="res://Enemy/Scripts/bullet.gd" id="1_e216t"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="1_xaxaq"]
@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://b36v4h67paksn" path="res://Assets/SFX/Attack - Thud/DSGNImpt_EXPLOSION-Thud_HY_PC-003.wav" id="7_ifwa6"]
 [ext_resource type="AudioStream" uid="uid://blqv4vqg300nc" path="res://Assets/SFX/Attack - Thud/DSGNImpt_EXPLOSION-Thud_HY_PC-004.wav" id="8_s6vqe"]
 [ext_resource type="AudioStream" uid="uid://dmugaf1ah0o2i" path="res://Assets/SFX/Attack - Thud/DSGNImpt_EXPLOSION-Thud_HY_PC-005.wav" id="9_5sujg"]
+
+[sub_resource type="Curve" id="Curve_8e7et"]
+_data = [Vector2(0, 0.4044944), 0.0, 0.0, 0, 0, Vector2(0.9651163, 0.8314607), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14rpg"]
 atlas = ExtResource("2_aktee")
@@ -163,7 +167,34 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_e216t")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+lifetime = 0.25
+emission_shape = 1
+emission_sphere_radius = 4.25
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+scale_amount_max = 10.0
+color = Color(0.6627451, 0, 0.09803922, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+amount = 20
+lifetime = 0.25
+emission_shape = 1
+emission_sphere_radius = 4.25
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_8e7et")
+color = Color(0.5137255, 0, 0, 1)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 modulate = Color(0.7188349, 0.13021848, 1.92523e-07, 1)
 texture_filter = 1
 position = Vector2(2.9802322e-08, 5.9604645e-08)
