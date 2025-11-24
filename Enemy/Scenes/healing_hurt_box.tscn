@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nvi3"]
 radius = 11.045361
 
-[sub_resource type="Resource" id="Resource_ihngx"]
+[sub_resource type="Resource" id="Resource_iq8pe"]
 resource_local_to_scene = true
 script = ExtResource("2_qsaso")
 power = -10
@@ -65,7 +65,7 @@ shape = SubResource("CircleShape2D_7nvi3")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_re7bc")]
 visible = false
 collision_layer = 2
-hurt_component = SubResource("Resource_ihngx")
+hurt_component = SubResource("Resource_iq8pe")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
