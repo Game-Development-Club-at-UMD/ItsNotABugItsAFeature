@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://cort7nyito44h" path="res://Items/item.gd" id="1_t6buq"]
 [ext_resource type="PackedScene" uid="uid://df1ihfxmd4dk0" path="res://Abilities/Scenes/Attacks/light_attack.tscn" id="2_bgaf2"]
 [ext_resource type="PackedScene" uid="uid://cg71y3uja8h56" path="res://Abilities/Scenes/Movements/down_dash.tscn" id="3_q4ral"]
-[ext_resource type="Texture2D" uid="uid://bisphplyf2tev" path="res://Assets/MC_Back.png" id="4_bgaf2"]
+[ext_resource type="Texture2D" uid="uid://2ybc5fgtp6bt" path="res://Items/Assets/Skillicon5_15.png" id="4_33lip"]
 
-[node name="Item1" type="Node2D" node_paths=PackedStringArray("icon")]
+[node name="FocusedItem" type="Node2D" node_paths=PackedStringArray("icon")]
 script = ExtResource("1_t6buq")
 icon = NodePath("Sprite2D")
 first_ability = ExtResource("2_bgaf2")
 second_ability = ExtResource("3_q4ral")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_bgaf2")
+texture_filter = 1
+texture = ExtResource("4_33lip")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

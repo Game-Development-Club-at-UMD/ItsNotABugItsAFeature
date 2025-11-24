@@ -18,12 +18,17 @@ var player : Player = null
 var spawned_item : Item
 var inventory : Inventory
 var available_items : Array[String] = [
-	"res://Items/Scenes/another_item.tscn",
-	"res://Items/Scenes/Item1.tscn",
-	"res://Items/Scenes/item.tscn",
-	"res://Items/Scenes/item_2.tscn",
-	"res://Items/Scenes/item_3.tscn",
+	"res://Items/Scenes/AOE_Item.tscn",
+	#"res://Items/Scenes/BasicItem.tscn",
+	"res://Items/Scenes/FocusedItem.tscn",
+	"res://Items/Scenes/HeavyItem.tscn",
 ]
+var rand_dash : Array[String] = [
+	"res://Abilities/Scenes/Movements/down_dash.tscn",
+	"res://Abilities/Scenes/Movements/left_dash.tscn",
+	"res://Abilities/Scenes/Movements/right_dash.tscn",
+]
+
 var distance : float
 
 func _ready() -> void:
@@ -80,6 +85,7 @@ func next_round():
 func spawn_item():
 	available_items.shuffle()
 	spawned_item = load(available_items.pick_random()).instantiate() as Item
+	spawned_item.second_ability = load(rand_dash.pick_random())
 	spawned_item.visible = false
 	add_child(spawned_item)
 	icon_item.texture = spawned_item.icon.texture

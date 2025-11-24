@@ -1,8 +1,8 @@
 [gd_scene load_steps=105 format=3 uid="uid://1sajrvnamtf7"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://baj3pbwboyb4q" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://dglegomtu41bg" path="res://Components/Hitbox&Hurtbox Stuff/hit_box.tscn" id="2_btcbx"]
-[ext_resource type="PackedScene" uid="uid://by518sy8lvvdq" path="res://Items/Scenes/item.tscn" id="2_k53q1"]
+[ext_resource type="PackedScene" uid="uid://by518sy8lvvdq" path="res://Items/Scenes/BasicItem.tscn" id="2_k53q1"]
 [ext_resource type="Texture2D" uid="uid://vus0dlpy0ikp" path="res://Assets/PlayerWalkAnim/Walk_Down.png" id="3_b1ygp"]
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="3_gwnis"]
 [ext_resource type="Texture2D" uid="uid://blvmur8hai3fg" path="res://Assets/MC_Front.png" id="3_x3vf3"]

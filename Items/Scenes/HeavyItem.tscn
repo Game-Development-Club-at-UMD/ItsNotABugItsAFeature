@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d115nseeotvow"]
+
+[ext_resource type="Script" uid="uid://cort7nyito44h" path="res://Items/item.gd" id="1_xnv1d"]
+[ext_resource type="PackedScene" uid="uid://nj0xmkg7oxtg" path="res://Abilities/Scenes/Attacks/heavy_attack.tscn" id="2_t6gaw"]
+[ext_resource type="PackedScene" uid="uid://cg71y3uja8h56" path="res://Abilities/Scenes/Movements/down_dash.tscn" id="3_be06x"]
+[ext_resource type="Texture2D" uid="uid://cw1plqvv4s6rp" path="res://Items/Assets/Skillicon5_13.png" id="4_dc4xw"]
+
+[node name="HeavyItem" type="Node2D" node_paths=PackedStringArray("icon")]
+script = ExtResource("1_xnv1d")
+icon = NodePath("Sprite2D")
+first_ability = ExtResource("2_t6gaw")
+second_ability = ExtResource("3_be06x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("4_dc4xw")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

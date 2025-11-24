@@ -28,10 +28,12 @@ var did_switch : bool = false
 @onready var audio_stream_player_2d: AudioStreamPlayer = $AudioStreamPlayer2D
 
 
+
+
 func _ready() -> void:
-	pickup_new_item(load("res://Items/Scenes/Item1.tscn"))
+	pickup_new_item(load("res://Items/Scenes/BasicItem.tscn"))
 	swap_items()
-	pickup_new_item(load("res://Items/Scenes/item_2.tscn"))
+	pickup_new_item(load("res://Items/Scenes/BasicItem.tscn"))
 	
 
 func _process(_delta: float) -> void:

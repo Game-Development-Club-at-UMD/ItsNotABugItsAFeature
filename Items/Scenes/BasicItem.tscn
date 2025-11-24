@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://by518sy8lvvdq"]
+
+[ext_resource type="Script" uid="uid://cort7nyito44h" path="res://Items/item.gd" id="1_r221k"]
+[ext_resource type="PackedScene" uid="uid://b7v0gxpjpdcnu" path="res://Abilities/Scenes/Attacks/basic_attack.tscn" id="2_q82bl"]
+[ext_resource type="PackedScene" uid="uid://dgwwwphxvilhj" path="res://Abilities/Scenes/Movements/right_dash.tscn" id="3_yuchx"]
+[ext_resource type="Texture2D" uid="uid://de68ct5lntrry" path="res://Items/Assets/Skillicon5_18.png" id="4_qine8"]
+
+[node name="BasicItem" type="Node2D" node_paths=PackedStringArray("icon")]
+script = ExtResource("1_r221k")
+icon = NodePath("Sprite2D")
+first_ability = ExtResource("2_q82bl")
+second_ability = ExtResource("3_yuchx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("4_qine8")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
