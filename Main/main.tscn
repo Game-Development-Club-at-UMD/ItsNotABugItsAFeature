@@ -128,6 +128,7 @@ scale = Vector2(0.30442306, 0.30442306)
 texture = ExtResource("2_ib3t1")
 
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
+position = Vector2(592, 306)
 scale = Vector2(1.2, 1.2)
 collision_mask = 129
 
