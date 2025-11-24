@@ -23,8 +23,6 @@ var attack: int
 var timer_spawn: float = 3.0
 var num_to_spawn: int = 10
 
-#var dashEnemy = preload("res://Enemy/Scenes/dash_enemy.tscn")
-#var flyEnemy = preload("res://Enemy/Scenes/fly_enemy.tscn")
 const RANGED_ENEMY = preload("uid://kaculelvnd8m")
 const FLY_ENEMY = preload("uid://bsqbuuw2ffo4")
 const DASH_ENEMY = preload("uid://dtl61m7bvusg")

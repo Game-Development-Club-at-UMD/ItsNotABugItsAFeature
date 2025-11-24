@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 	
 	match state:
 		States.ENABLED:
+			player.move_vis_rotation_helper.hide()
 			
 			distance = global_position.distance_to(player.global_position)
 			
@@ -62,6 +63,7 @@ func _process(delta: float) -> void:
 			item_popup.modulate.a = remap(distance, 250, 500, 1, 0)
 		
 		States.DISABLED:
+			player.move_vis_rotation_helper.show()
 			line_2d.modulate.a = lerp(line_2d.modulate.a, 0.0, delta * 12)
 			item_popup.modulate.a = lerp(item_popup.modulate.a, 0.0, delta * 12)
 

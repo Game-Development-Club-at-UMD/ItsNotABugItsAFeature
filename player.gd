@@ -19,6 +19,7 @@ var am_i_fucking_waiting : bool = false
 @export var item : PackedScene
 
 var instanced_item : Item = null
+var item_spawner : ItemSpawner
 
 var state : States = States.PlAYER_MOVE
 enum States {PlAYER_MOVE, PLAYER_ATTACKING}
