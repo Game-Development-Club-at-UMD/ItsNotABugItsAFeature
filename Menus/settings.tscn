@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1wx1ntgnhxvt"]
+
+[ext_resource type="Script" uid="uid://icns5yb31hch" path="res://Menus/settings.gd" id="1_tei4e"]
+[ext_resource type="Texture2D" uid="uid://bcr7mfakpuyeh" path="res://Assets/Button.png" id="2_lpudm"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tei4e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 800.0
+color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 26.0
+offset_right = -68.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_lpudm")
+texture_pressed = ExtResource("2_lpudm")
+
+[node name="BackText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/BackButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 119.0
+offset_bottom = 51.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Back[/center]"
+
+[node name="Settings Grid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/PanelContainer/BackButton/BackText" to="." method="_on_back_text_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/PanelContainer/BackButton/BackText" to="." method="_on_back_text_mouse_exited"]
