@@ -1,4 +1,6 @@
 extends Control
+@onready var fade_player: AnimationPlayer = $FadePlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func start_text_shake(node: Node, display_text: String):
 	node.text = ("[shake rate: 5.0 level -3 connected = 1][center]" + display_text + "[/center][/shake]")
@@ -8,24 +10,29 @@ func stop_text_shake(node: Node, display_text: String):
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	animation_player.play("sway")
+	fade_player.play("FadeIn")
 
 
 # Redirection
 func _on_play_pressed() -> void:
+	fade_player.play("FadeOut")
+	await fade_player.animation_finished
 	get_tree().change_scene_to_file("res://Main/main.tscn")
 	
 func _on_settings_pressed() -> void:
+	fade_player.play("FadeOut")
+	await fade_player.animation_finished
 	get_tree().change_scene_to_file("res://Menus/settings.tscn")
 
 func _on_credits_pressed() -> void:
+	fade_player.play("FadeOut")
+	await fade_player.animation_finished
 	pass # Replace with function body.
 
 func _on_quit_pressed() -> void:
+	fade_player.play("FadeOut")
+	await fade_player.animation_finished
 	get_tree().quit()
 
 

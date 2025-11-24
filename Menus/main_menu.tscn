@@ -1,7 +1,101 @@
-[gd_scene load_steps=3 format=3 uid="uid://cok2sx4r5f6o6"]
+[gd_scene load_steps=12 format=3 uid="uid://cok2sx4r5f6o6"]
 
 [ext_resource type="Script" uid="uid://d22nhgjn8ebml" path="res://Menus/main_menu.gd" id="1_jf8mj"]
+[ext_resource type="Texture2D" uid="uid://bt4y35ytc4b6w" path="res://Assets/BG.png" id="2_11gta"]
 [ext_resource type="Texture2D" uid="uid://bcr7mfakpuyeh" path="res://Assets/Button.png" id="2_p3jrs"]
+[ext_resource type="Theme" uid="uid://bm0vssj4jk1ix" path="res://Assets/Theme/UI_theme.tres" id="3_cxdly"]
+
+[sub_resource type="Animation" id="Animation_vxn86"]
+resource_name = "sway"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(0.59460425, 0.61557215, 0.28717497),
+"update": 0,
+"values": [Vector2(626, 37), Vector2(622.885, 15.395), Vector2(626, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_gn11b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(626, 37)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2k0p2"]
+_data = {
+&"RESET": SubResource("Animation_gn11b"),
+&"sway": SubResource("Animation_vxn86")
+}
+
+[sub_resource type="Animation" id="Animation_y501u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uayf2"]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3.1383367, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_55uyf"]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.6390157, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_62ju1"]
+_data = {
+&"FadeIn": SubResource("Animation_uayf2"),
+&"FadeOut": SubResource("Animation_55uyf"),
+&"RESET": SubResource("Animation_y501u")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,11 +106,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jf8mj")
 
+[node name="TextureRect" type="Sprite2D" parent="."]
+position = Vector2(626, 37)
+scale = Vector2(0.25552884, 0.25552884)
+texture = ExtResource("2_11gta")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2k0p2")
+}
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_62ju1")
+}
+
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
 layout_mode = 0
-offset_right = 1203.0
-offset_bottom = 717.0
-color = Color(0.27058825, 0.27058825, 0.27058825, 1)
+offset_right = 1164.0
+offset_bottom = 654.0
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -31,11 +141,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -149.0
-offset_top = -93.0
+offset_top = -172.0
 offset_right = 151.0
-offset_bottom = 175.625
+offset_bottom = 122.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="RichTextLabel" parent="VSplitContainer"]
+layout_mode = 2
+theme = ExtResource("3_cxdly")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[shake][center]ITS NOT A BUG[br]ITS A FEATURE"
+fit_content = true
 
 [node name="Logo" type="TextureRect" parent="VSplitContainer"]
 layout_mode = 2
@@ -43,7 +162,7 @@ layout_mode = 2
 [node name="MenuOptions" type="VBoxContainer" parent="VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 10
+theme_override_constants/separation = 15
 
 [node name="Play" type="TextureButton" parent="VSplitContainer/MenuOptions"]
 layout_mode = 2
@@ -59,10 +178,12 @@ offset_top = 13.0
 offset_right = 200.0
 offset_bottom = 48.375
 mouse_filter = 2
+theme = ExtResource("3_cxdly")
 bbcode_enabled = true
 text = "[center]Play[/center]"
 
 [node name="Settings" type="TextureButton" parent="VSplitContainer/MenuOptions"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 texture_normal = ExtResource("2_p3jrs")
@@ -70,12 +191,14 @@ texture_pressed = ExtResource("2_p3jrs")
 stretch_mode = 0
 
 [node name="SettingsText" type="RichTextLabel" parent="VSplitContainer/MenuOptions/Settings"]
+visible = false
 layout_mode = 0
 offset_left = 89.0
 offset_top = 12.0
 offset_right = 219.0
 offset_bottom = 52.0
 mouse_filter = 2
+theme = ExtResource("3_cxdly")
 bbcode_enabled = true
 text = "[center]Settings[/center]"
 
@@ -92,6 +215,7 @@ offset_top = 12.0
 offset_right = 219.0
 offset_bottom = 52.0
 mouse_filter = 2
+theme = ExtResource("3_cxdly")
 bbcode_enabled = true
 text = "[center]Credits[/center]"
 
@@ -109,6 +233,7 @@ offset_top = 10.0
 offset_right = 214.0
 offset_bottom = 50.0
 mouse_filter = 2
+theme = ExtResource("3_cxdly")
 bbcode_enabled = true
 text = "[center]Quit[/center]
 "
