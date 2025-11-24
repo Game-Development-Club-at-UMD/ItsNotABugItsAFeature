@@ -8,21 +8,28 @@ var health : int
 var distance : float
 
 @onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree as AnimationTree
+#@onready var attack_waring: Sprite2D = $AttackWaring
 
 @export var moveSpeed : float = 100
 @export var shoot_threshold : float = 250
 @export var projectile : PackedScene
 @export var init_proj_velocity : float = 100
+@export var attack_waring: Sprite2D
+
+func _ready() -> void:
+	attack_waring.hide()
 
 func _physics_process(delta: float) -> void:
 	animation_tree.set("parameters/Idle/blend_position", velocity.normalized().x)
 	animation_tree.set("parameters/Move/blend_position", velocity.normalized().x)
 	match state:
 		States.TRACKING_PLAYER:
+			attack_waring.hide()
 			move_enemy(delta, moveSpeed)
 			velocity = navigation_agent_2d.get_velocity()
 			check_for_shoot()
 		States.SHOOTING:
+			attack_waring.show()
 			velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
 			if velocity.x < 0.1:
 				velocity = Vector2.ZERO

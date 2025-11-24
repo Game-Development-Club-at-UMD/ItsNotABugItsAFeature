@@ -3,9 +3,12 @@ extends Enemy
 @onready var dash_timer : Timer = %DashTimer as Timer
 @onready var dash_visualization: Node2D = $DashVisRotationHelper/DashVisualization
 @onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree
+#@onready var attack_waring: Sprite2D = $AttackWaring
 
 @export var moveSpeed : float = 100
 @export var dashSpeed : float = 200
+@export var attack_waring: Sprite2D
+
 
 var dashTargetPosition : Vector2
 var dashDirection : Vector2
@@ -15,6 +18,7 @@ var state : States = States.TRACKING_PLAYER
 enum States {DASHING, TRACKING_PLAYER, WAIT_DASH}
 
 func _ready() -> void:
+	attack_waring.hide()
 	dash_visualization.hide()
 
 func _physics_process(delta: float) -> void:
@@ -41,6 +45,7 @@ func dash() -> void:
 	dashDirection = global_position.direction_to(dashTargetPosition)
 	dash_visualization.rotation = dashDirection.angle()
 	dash_visualization.show()
+	attack_waring.show()
 	state = States.WAIT_DASH
 	await get_tree().create_timer(1).timeout
 	state = States.DASHING
@@ -54,6 +59,7 @@ func checkDash() -> void:
 		dash()
 
 func _on_dash_timer_timeout() -> void:
+	attack_waring.hide()
 	state = States.TRACKING_PLAYER
 	dash_visualization.hide()
 

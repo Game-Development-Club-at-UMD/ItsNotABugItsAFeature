@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://kaculelvnd8m"]
+[gd_scene load_steps=37 format=3 uid="uid://kaculelvnd8m"]
 
 [ext_resource type="Script" uid="uid://bxn20024ywqsv" path="res://Enemy/Scripts/ranged_enemy.gd" id="1_se4dn"]
 [ext_resource type="PackedScene" uid="uid://d3fd1e3qgtub8" path="res://Enemy/Scenes/bullet.tscn" id="2_ga46k"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_q5mxs"]
 [ext_resource type="Texture2D" uid="uid://swomc1p602gg" path="res://Assets/Enemy/Ranged/1B.PNG" id="9_7hgoq"]
 [ext_resource type="Texture2D" uid="uid://dcl4brd3ueqrj" path="res://Assets/Enemy/Ranged/2B.PNG" id="10_q5mxs"]
+[ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="11_51qi3"]
+[ext_resource type="PackedScene" uid="uid://c6v2s2m56205m" path="res://Enemy/Attack_Indicator/sprite_2d.tscn" id="12_ic5tx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51qi3"]
 
@@ -250,11 +252,12 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_4aq1r")
 states/Move/position = Vector2(485, 156)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_sds5v"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_q5mxs"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_51qi3")]
 
-[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar")]
+[node name="RangedEnemy" type="CharacterBody2D" node_paths=PackedStringArray("attack_waring", "healthbar")]
 script = ExtResource("1_se4dn")
 shoot_threshold = 400.0
 projectile = ExtResource("2_ga46k")
 init_proj_velocity = 150.0
+attack_waring = NodePath("attack_warning")
 healthbar = NodePath("HealthBar")
 heal_hurtbox_scene = ExtResource("2_nwq0y")
 
@@ -320,5 +323,14 @@ advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = -0.0060606003
 parameters/Move/blend_position = 0.0
+
+[node name="AttackWaring" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -31)
+scale = Vector2(0.1328125, 0.1328125)
+texture = ExtResource("11_51qi3")
+
+[node name="attack_warning" parent="." instance=ExtResource("12_ic5tx")]
+position = Vector2(0, -34)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

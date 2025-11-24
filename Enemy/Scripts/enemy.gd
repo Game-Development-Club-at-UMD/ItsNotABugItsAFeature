@@ -22,8 +22,6 @@ func move_enemy(delta : float, movement_speed: float) -> void:
 	direction = global_position.direction_to(nextPoint)
 	
 	navigation_agent_2d.set_velocity(lerp(navigation_agent_2d.get_velocity(), direction * movement_speed, delta * 12))
-	#velocity = navigation_agent_2d.get_velocity()
-	#velocity = lerp(velocity, direction * movement_speed, delta * 12)
 
 func player_location() -> Vector2:
 	return player.global_position
@@ -31,7 +29,7 @@ func player_location() -> Vector2:
 func die():
 	spawn_heal_pickup()
 	self.queue_free()
-	
+
 func spawn_heal_pickup():
 	var healingBox : HealingHurtBox = heal_hurtbox_scene.instantiate() as HealingHurtBox
 	healingBox.global_position = global_position
