@@ -5,6 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://bt4y35ytc4b6w" path="res://Assets/BG.png" id="3_fldtd"]
 [ext_resource type="Texture2D" uid="uid://bcr7mfakpuyeh" path="res://Assets/Button.png" id="4_h33bd"]
 
+[sub_resource type="Animation" id="Animation_gn11b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(626, 37)]
+}
+
 [sub_resource type="Animation" id="Animation_vxn86"]
 resource_name = "sway"
 length = 5.0
@@ -22,40 +37,10 @@ tracks/0/keys = {
 "values": [Vector2(626, 37), Vector2(622.885, 15.395), Vector2(626, 37)]
 }
 
-[sub_resource type="Animation" id="Animation_gn11b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(626, 37)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2k0p2"]
 _data = {
 &"RESET": SubResource("Animation_gn11b"),
 &"sway": SubResource("Animation_vxn86")
-}
-
-[sub_resource type="Animation" id="Animation_y501u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_uayf2"]
@@ -88,6 +73,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(2.6390157, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y501u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_62ju1"]

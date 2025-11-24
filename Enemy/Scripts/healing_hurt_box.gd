@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die():
+	get_tree().get_first_node_in_group('camera').add_trauma(.5, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 	cpu_particles_2d.one_shot = true
 	cpu_particles_2d_2.one_shot = true
 	audio_stream_player_2d.play()

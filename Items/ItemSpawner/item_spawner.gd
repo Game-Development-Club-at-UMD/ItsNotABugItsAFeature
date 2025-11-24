@@ -73,6 +73,7 @@ func give_player_new_item():
 	player.inventory.pickup_new_item(packed_scene)
 
 func next_round():
+	get_tree().get_first_node_in_group('camera').add_trauma(.5, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 	player_chose_item.emit()
 	state = States.DISABLED
 

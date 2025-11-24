@@ -41,6 +41,7 @@ folder_colors={
 
 spawn="Spawn locatioons"
 enemy="Group with the enemies"
+camera=""
 
 [input]
 

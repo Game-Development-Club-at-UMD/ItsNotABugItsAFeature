@@ -15,6 +15,8 @@ var am_i_fucking_waiting : bool = false
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var move_vis_rotation_helper: Node2D = $MoveVisRotationHelper
 @onready var movement_visualization: Node2D = $MoveVisRotationHelper/MovementVisualization
+@onready var camera : CameraShake = get_tree().get_first_node_in_group("camera")
+
 
 @export var hitbox : HitBox
 @export var item : PackedScene
@@ -57,7 +59,7 @@ func _process(delta: float) -> void:
 				var item_did_activate = await inventory.did_item_activate
 				
 				if item_did_activate:
-					
+					get_tree().get_first_node_in_group('camera').add_trauma(.5, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 					state = States.PLAYER_ATTACKING
 				
 				am_i_fucking_waiting = false
@@ -79,6 +81,7 @@ func die():
 	player_died.emit()
 
 func i_was_hit():
+	get_tree().get_first_node_in_group('camera').add_trauma(.5, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 	hit_effect_player.play()
 
 func end_attacking():
