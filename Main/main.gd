@@ -6,7 +6,6 @@ extends Node2D
 @onready var wave_system: Node2D = $WaveSystem
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
-@onready var BGM: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 signal lost_game
 
@@ -18,10 +17,6 @@ func _ready() -> void:
 	color_rect.visible = false
 	item_spawner.player_chose_item.connect(wave_system.next_round)
 	wave_system.end_of_wave.connect(item_spawner.start_item_selection_phase)
-	
-func _process(_delta: float) -> void:
-	if !BGM.playing:
-		BGM.play()
 
 ## signal connects from Player
 func player_died():
@@ -33,8 +28,8 @@ func player_died():
 func ready_to_switch_scenes():
 	var game_manager : GameManager = get_parent() as GameManager
 	game_manager.lost_game(self)
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _physics_process(delta: float) -> void:
 	
 	camera_2d.global_position = lerp(camera_2d.global_position, player.global_position, delta * 8)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://tfdn6j4eaphp"
+path="res://.godot/imported/DSGNMisc_HIT-Synth Hit_HY_PC-003.wav-ed71f655e66abbf806d8ea0beacf9a8f.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-003.wav"
+dest_files=["res://.godot/imported/DSGNMisc_HIT-Synth Hit_HY_PC-003.wav-ed71f655e66abbf806d8ea0beacf9a8f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

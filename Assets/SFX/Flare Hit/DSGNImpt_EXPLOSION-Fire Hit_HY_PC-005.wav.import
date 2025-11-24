@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://qd8odxg700ih"
+path="res://.godot/imported/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-005.wav-7733f9f06fac6b41a01aa736b4ab404b.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Flare Hit/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-005.wav"
+dest_files=["res://.godot/imported/DSGNImpt_EXPLOSION-Fire Hit_HY_PC-005.wav-7733f9f06fac6b41a01aa736b4ab404b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bk5qdkw24sr1f"
+path="res://.godot/imported/DSGNSynth_BUFF-Execute On Hit_HY_PC-005.wav-6c5cb462d20bb6a336a1b80b1614abcb.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Player Death/DSGNSynth_BUFF-Execute On Hit_HY_PC-005.wav"
+dest_files=["res://.godot/imported/DSGNSynth_BUFF-Execute On Hit_HY_PC-005.wav-6c5cb462d20bb6a336a1b80b1614abcb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

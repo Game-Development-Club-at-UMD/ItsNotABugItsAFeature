@@ -11,9 +11,6 @@ func _ready() -> void:
 	ability_anim.animation_finished.connect(end)
 	look_at(get_global_mouse_position())
 
-#func _process(delta: float) -> void:
-	#look_at(get_global_mouse_position())
-
 func end(_anim_name : String):
 	finish()
 	queue_free()
