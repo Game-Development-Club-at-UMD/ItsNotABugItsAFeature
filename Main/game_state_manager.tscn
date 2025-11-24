@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddtikrp1ouin8"]
+[gd_scene load_steps=4 format=3 uid="uid://ddtikrp1ouin8"]
 
 [ext_resource type="Script" uid="uid://bs2xytykx0hjj" path="res://Main/game_state_manager.gd" id="1_ft50w"]
 [ext_resource type="PackedScene" uid="uid://dsv5ih6knxyxl" path="res://Main/main.tscn" id="2_ft50w"]
+[ext_resource type="AudioStream" uid="uid://b7jqdgp1kyhvp" path="res://Assets/Music/NotaBug1115Loop.mp3" id="2_u5jwe"]
 
 [node name="GameStateManager" type="Node"]
 script = ExtResource("1_ft50w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u5jwe")
+volume_db = -14.921
+autoplay = true
+parameters/looping = true
 
 [node name="Main" parent="." instance=ExtResource("2_ft50w")]

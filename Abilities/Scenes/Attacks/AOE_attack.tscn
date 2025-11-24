@@ -1,9 +1,14 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6fq4ao5vdpgf"]
+[gd_scene load_steps=28 format=3 uid="uid://b6fq4ao5vdpgf"]
 
 [ext_resource type="Script" uid="uid://dflmm8vmq4y5y" path="res://Abilities/Scripts/attack_ability.gd" id="1_17mbl"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_17mbl"]
 [ext_resource type="Texture2D" uid="uid://dah4sk08f6jvv" path="res://Assets/AbilityAnims/AOE_attack.png" id="2_wytq3"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_qxhxa"]
+[ext_resource type="AudioStream" uid="uid://n1unfo4c5yik" path="res://Assets/SFX/Nova/DSGNImpt_EXPLOSION-Flare Nova_HY_PC-001.wav" id="5_ka4hc"]
+[ext_resource type="AudioStream" uid="uid://cmocfmwyo8wb7" path="res://Assets/SFX/Nova/DSGNImpt_EXPLOSION-Flare Nova_HY_PC-002.wav" id="6_redkp"]
+[ext_resource type="AudioStream" uid="uid://cgex58xv3bhas" path="res://Assets/SFX/Nova/DSGNImpt_EXPLOSION-Flare Nova_HY_PC-003.wav" id="7_nks5d"]
+[ext_resource type="AudioStream" uid="uid://bcy7xivsieq4y" path="res://Assets/SFX/Nova/DSGNImpt_EXPLOSION-Flare Nova_HY_PC-004.wav" id="8_uvgc6"]
+[ext_resource type="AudioStream" uid="uid://cxyyegmm7un4p" path="res://Assets/SFX/Nova/DSGNImpt_EXPLOSION-Flare Nova_HY_PC-005.wav" id="9_7spc3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j4qr3"]
 atlas = ExtResource("2_wytq3")
@@ -79,7 +84,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Resource" id="Resource_qpxc4"]
+[sub_resource type="Resource" id="Resource_ka4hc"]
 resource_local_to_scene = true
 script = ExtResource("3_qxhxa")
 power = 10
@@ -93,6 +98,57 @@ radius = 69.18092
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ihdy6"]
 radius = 84.14868
+
+[sub_resource type="Animation" id="Animation_mybcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtBox/1:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox/3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_417lm"]
 resource_name = "Start"
@@ -147,44 +203,17 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true]
 }
-
-[sub_resource type="Animation" id="Animation_mybcs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HurtBox/1:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HurtBox/2:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HurtBox/3:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(4.2870955, 1),
+"update": 0,
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r73mj"]
@@ -192,6 +221,14 @@ _data = {
 &"RESET": SubResource("Animation_mybcs"),
 &"Start": SubResource("Animation_417lm")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bdu8q"]
+streams_count = 5
+stream_0/stream = ExtResource("5_ka4hc")
+stream_1/stream = ExtResource("6_redkp")
+stream_2/stream = ExtResource("7_nks5d")
+stream_3/stream = ExtResource("8_uvgc6")
+stream_4/stream = ExtResource("9_7spc3")
 
 [node name="AOEAttack" type="Node2D" node_paths=PackedStringArray("hurt_box", "sprite", "ability_anim")]
 script = ExtResource("1_17mbl")
@@ -202,6 +239,8 @@ cooldown = 1.3
 text = "Attack in all directions"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+z_index = -1
 texture_filter = 1
 position = Vector2(-9, -1)
 rotation = 3.1415927
@@ -213,7 +252,7 @@ frame_progress = 1.0
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_17mbl")]
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_qpxc4")
+hurt_component = SubResource("Resource_ka4hc")
 collision_shape2D = NodePath("1")
 
 [node name="1" type="CollisionShape2D" parent="HurtBox"]
@@ -229,3 +268,7 @@ shape = SubResource("CircleShape2D_ihdy6")
 libraries = {
 &"": SubResource("AnimationLibrary_r73mj")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bdu8q")
+autoplay = true

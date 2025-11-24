@@ -1,9 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7v0gxpjpdcnu"]
+[gd_scene load_steps=30 format=3 uid="uid://b7v0gxpjpdcnu"]
 
 [ext_resource type="Script" uid="uid://dflmm8vmq4y5y" path="res://Abilities/Scripts/attack_ability.gd" id="1_do1jo"]
 [ext_resource type="Texture2D" uid="uid://dqcqiqiwiuewt" path="res://Assets/AbilityAnims/basic_attack.png" id="2_d08ha"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_fh7ky"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_w0nyu"]
+[ext_resource type="AudioStream" uid="uid://drwttotv4oxob" path="res://Assets/SFX/Attack - Flare/DSGNImpt_EXPLOSION-Pyro Burst_HY_PC-001.wav" id="5_4jvav"]
+[ext_resource type="AudioStream" uid="uid://76b5enevdxwk" path="res://Assets/SFX/Attack - Flare/DSGNImpt_EXPLOSION-Pyro Burst_HY_PC-002.wav" id="6_0k7q7"]
+[ext_resource type="AudioStream" uid="uid://c760oantfviqe" path="res://Assets/SFX/Attack - Flare/DSGNImpt_EXPLOSION-Pyro Burst_HY_PC-003.wav" id="7_eliio"]
+[ext_resource type="AudioStream" uid="uid://cr6i1cn17thud" path="res://Assets/SFX/Attack - Flare/DSGNImpt_EXPLOSION-Pyro Burst_HY_PC-004.wav" id="8_76xtn"]
+[ext_resource type="AudioStream" uid="uid://b3k6yo7aseikq" path="res://Assets/SFX/Attack - Flare/DSGNImpt_EXPLOSION-Pyro Burst_HY_PC-005.wav" id="9_25w64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lm2b8"]
 atlas = ExtResource("2_d08ha")
@@ -90,10 +95,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Resource" id="Resource_d08ha"]
+[sub_resource type="Resource" id="Resource_4jvav"]
 resource_local_to_scene = true
 script = ExtResource("3_w0nyu")
-power = 50
+power = 20
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0oc5y"]
@@ -144,6 +149,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_fh7ky"]
@@ -198,12 +215,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(6.9643984, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w0nyu"]
 _data = {
 &"RESET": SubResource("Animation_67156"),
 &"Start": SubResource("Animation_fh7ky")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dtpq0"]
+streams_count = 5
+stream_0/stream = ExtResource("5_4jvav")
+stream_1/stream = ExtResource("6_0k7q7")
+stream_2/stream = ExtResource("7_eliio")
+stream_3/stream = ExtResource("8_76xtn")
+stream_4/stream = ExtResource("9_25w64")
 
 [node name="BasicAttack" type="Node2D" node_paths=PackedStringArray("hurt_box", "sprite", "ability_anim")]
 script = ExtResource("1_do1jo")
@@ -214,6 +251,7 @@ cooldown = 1.0
 text = "Basic forward attack"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 position = Vector2(53.999996, -1.9073486e-06)
 rotation = 1.5707964
@@ -223,11 +261,12 @@ frame = 10
 frame_progress = 1.0
 
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_fh7ky")]
+show_behind_parent = true
 position = Vector2(5, 0)
 scale = Vector2(1.8478478, 1.7239369)
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_d08ha")
+hurt_component = SubResource("Resource_4jvav")
 collision_shape2D = NodePath("2")
 
 [node name="3" type="CollisionShape2D" parent="HurtBox"]
@@ -249,5 +288,9 @@ shape = SubResource("CapsuleShape2D_1vjce")
 libraries = {
 &"": SubResource("AnimationLibrary_w0nyu")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dtpq0")
+autoplay = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_attack_animation_finished"]

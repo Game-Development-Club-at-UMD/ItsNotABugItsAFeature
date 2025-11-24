@@ -1,9 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://df1ihfxmd4dk0"]
+[gd_scene load_steps=27 format=3 uid="uid://df1ihfxmd4dk0"]
 
 [ext_resource type="Script" uid="uid://dflmm8vmq4y5y" path="res://Abilities/Scripts/attack_ability.gd" id="1_sebol"]
 [ext_resource type="Texture2D" uid="uid://cyvb2777vocr5" path="res://Assets/AbilityAnims/light_attack.png" id="2_3j50y"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_sebol"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="3_tsxk6"]
+[ext_resource type="AudioStream" uid="uid://c4wb8c3001f66" path="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-001.wav" id="5_0x8rm"]
+[ext_resource type="AudioStream" uid="uid://cpf1r4tyxvpv8" path="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-002.wav" id="6_tsmhg"]
+[ext_resource type="AudioStream" uid="uid://tfdn6j4eaphp" path="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-003.wav" id="7_p7xsp"]
+[ext_resource type="AudioStream" uid="uid://huxej1y5nyi5" path="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-004.wav" id="8_2mk02"]
+[ext_resource type="AudioStream" uid="uid://ctgoi3wn17ljt" path="res://Assets/SFX/Attack - Synth Hit/DSGNMisc_HIT-Synth Hit_HY_PC-005.wav" id="9_8pule"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wog50"]
 atlas = ExtResource("2_3j50y")
@@ -69,10 +74,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Resource" id="Resource_8pule"]
+[sub_resource type="Resource" id="Resource_0x8rm"]
 resource_local_to_scene = true
 script = ExtResource("3_tsxk6")
-power = 10
+power = 50
 metadata/_custom_type_script = "uid://yjwpqjr5cj1n"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_66rsp"]
@@ -85,6 +90,57 @@ height = 74.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gup5p"]
 radius = 15.0
+
+[sub_resource type="Animation" id="Animation_3ymps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtBox/1:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/2:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox/3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_sebol"]
 resource_name = "Start"
@@ -138,44 +194,17 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="Animation" id="Animation_3ymps"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HurtBox/1:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HurtBox/2:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("HurtBox/3:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.438277, 1),
+"update": 0,
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tsxk6"]
@@ -184,12 +213,22 @@ _data = {
 &"Start": SubResource("Animation_sebol")
 }
 
-[node name="LightAttack" type="Node2D" node_paths=PackedStringArray("hurt_box", "sprite", "ability_anim")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gup5p"]
+streams_count = 5
+stream_0/stream = ExtResource("5_0x8rm")
+stream_1/stream = ExtResource("6_tsmhg")
+stream_2/stream = ExtResource("7_p7xsp")
+stream_3/stream = ExtResource("8_2mk02")
+stream_4/stream = ExtResource("9_8pule")
+
+[node name="FocusedAttack" type="Node2D" node_paths=PackedStringArray("hurt_box", "sprite", "ability_anim")]
+show_behind_parent = true
+z_index = -1
 script = ExtResource("1_sebol")
 hurt_box = NodePath("HurtBox")
 sprite = NodePath("AnimatedSprite2D")
 ability_anim = NodePath("AnimationPlayer")
-cooldown = 0.2
+cooldown = 0.1
 text = "A focused forward attack"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -204,7 +243,7 @@ frame_progress = 1.0
 visible = false
 collision_layer = 4
 collision_mask = 0
-hurt_component = SubResource("Resource_8pule")
+hurt_component = SubResource("Resource_0x8rm")
 collision_shape2D = NodePath("1")
 
 [node name="1" type="CollisionShape2D" parent="HurtBox"]
@@ -225,3 +264,7 @@ shape = SubResource("CircleShape2D_gup5p")
 libraries = {
 &"": SubResource("AnimationLibrary_tsxk6")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gup5p")
+autoplay = true

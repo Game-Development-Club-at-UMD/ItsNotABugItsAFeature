@@ -1,13 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvpodtds0af3b"]
+[gd_scene load_steps=18 format=3 uid="uid://dvpodtds0af3b"]
 
 [ext_resource type="Script" uid="uid://cmon6wj1fc34l" path="res://Enemy/Scripts/healing_hurt_box.gd" id="1_n27pe"]
 [ext_resource type="Script" uid="uid://yjwpqjr5cj1n" path="res://Components/hurt_component.gd" id="2_qsaso"]
 [ext_resource type="PackedScene" uid="uid://blqy1785xxrj" path="res://Components/Hitbox&Hurtbox Stuff/hurt_box.tscn" id="2_re7bc"]
+[ext_resource type="AudioStream" uid="uid://bbpj3t34jfq4l" path="res://Assets/SFX/Heal/DSGNSynth_BUFF-Water Buff_HY_PC-001.wav" id="4_i251i"]
+[ext_resource type="AudioStream" uid="uid://b687ussnt1qiu" path="res://Assets/SFX/Heal/DSGNSynth_BUFF-Water Buff_HY_PC-002.wav" id="5_6ba1j"]
+[ext_resource type="AudioStream" uid="uid://dtw3edm1ing6y" path="res://Assets/SFX/Heal/DSGNSynth_BUFF-Water Buff_HY_PC-003.wav" id="6_tytcu"]
+[ext_resource type="AudioStream" uid="uid://bsejhdyrsgel1" path="res://Assets/SFX/Heal/DSGNSynth_BUFF-Water Buff_HY_PC-004.wav" id="7_othpa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nvi3"]
 radius = 11.045361
 
-[sub_resource type="Resource" id="Resource_7nvi3"]
+[sub_resource type="Resource" id="Resource_ihngx"]
 resource_local_to_scene = true
 script = ExtResource("2_qsaso")
 power = -10
@@ -42,14 +46,12 @@ point_count = 2
 _data = [Vector2(0, 0.4044944), 0.0, 0.0, 0, 0, Vector2(0.9651163, 0.8314607), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_qfqy5"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.47093022, 67.41573), 0.0, 0.0, 0, 0, Vector2(1, 97.75281), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_j5o0u"]
-_data = [Vector2(0, 0.52808994), 0.0, 0.0, 0, 0, Vector2(1, 0.92134833), 0.0, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bs0u5"]
+streams_count = 4
+stream_0/stream = ExtResource("4_i251i")
+stream_1/stream = ExtResource("5_6ba1j")
+stream_2/stream = ExtResource("6_tytcu")
+stream_3/stream = ExtResource("7_othpa")
 
 [node name="HealingOrb" type="CharacterBody2D"]
 collision_layer = 0
@@ -63,7 +65,7 @@ shape = SubResource("CircleShape2D_7nvi3")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_re7bc")]
 visible = false
 collision_layer = 2
-hurt_component = SubResource("Resource_7nvi3")
+hurt_component = SubResource("Resource_ihngx")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -99,23 +101,11 @@ scale_amount_max = 4.5
 scale_amount_curve = SubResource("Curve_w2od1")
 color = Color(0.30027917, 1, 0.7054734, 1)
 
-[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
-visible = false
-randomness = 1.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 8.91
-spread = 180.0
-gravity = Vector2(0, 0)
-damping_max = 18.557
-damping_curve = SubResource("Curve_qfqy5")
-scale_amount_min = 4.0
-scale_amount_max = 4.5
-scale_amount_curve = SubResource("Curve_j5o0u")
-color = Color(0.4225901, 1, 0.8461458, 1)
-
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bs0u5")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

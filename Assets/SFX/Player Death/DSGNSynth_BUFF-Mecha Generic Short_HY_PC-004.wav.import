@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://s0pdxvv3ex5o"
+path="res://.godot/imported/DSGNSynth_BUFF-Mecha Generic Short_HY_PC-004.wav-2bb264b7d6e9821317aca6379b6e4283.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Player Death/DSGNSynth_BUFF-Mecha Generic Short_HY_PC-004.wav"
+dest_files=["res://.godot/imported/DSGNSynth_BUFF-Mecha Generic Short_HY_PC-004.wav-2bb264b7d6e9821317aca6379b6e4283.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

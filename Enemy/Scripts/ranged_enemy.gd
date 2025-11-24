@@ -16,12 +16,20 @@ var distance : float
 @export var init_proj_velocity : float = 100
 @export var attack_waring: Sprite2D
 
+
+@onready var footsteps: AudioStreamPlayer2D = $Footsteps
+@onready var spawn: AudioStreamPlayer2D = $Spawn
+
 func _ready() -> void:
 	attack_waring.hide()
+	spawn.play()
+	super._ready()
 
 func _physics_process(delta: float) -> void:
 	animation_tree.set("parameters/Idle/blend_position", velocity.normalized().x)
 	animation_tree.set("parameters/Move/blend_position", velocity.normalized().x)
+	if footsteps.playing == false:
+		footsteps.play()
 	match state:
 		States.TRACKING_PLAYER:
 			attack_waring.hide()

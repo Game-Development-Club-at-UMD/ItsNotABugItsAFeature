@@ -25,12 +25,13 @@ var did_switch : bool = false
 @onready var active_progress_bar: ProgressBar = $MarginContainer/HBoxContainer/ActiveItemIcon/ProgressBar
 ## [ProgressBar] which displays the inactive item's cooldown status
 @onready var inactive_progress_bar: ProgressBar = $MarginContainer/HBoxContainer/InactiveItemIcon/ProgressBar
+@onready var audio_stream_player_2d: AudioStreamPlayer = $AudioStreamPlayer2D
 
 
 func _ready() -> void:
-	pickup_new_item(load("res://Items/Scenes/item.tscn"))
-	swap_items()
 	pickup_new_item(load("res://Items/Scenes/Item1.tscn"))
+	swap_items()
+	pickup_new_item(load("res://Items/Scenes/item_2.tscn"))
 	
 
 func _process(_delta: float) -> void:
@@ -64,6 +65,11 @@ func activate():
 		active_progress_bar.visible = true
 	did_switch = false
 	item_finished.emit()
+	wait_for_cooldown_regen()
+
+func wait_for_cooldown_regen():
+	await active_item.timer.timeout
+	audio_stream_player_2d.play()
 
 ## Switches the current [member active_item] for the [Item] passed in as an active scene
 func pickup_new_item(new_item : PackedScene) -> void:

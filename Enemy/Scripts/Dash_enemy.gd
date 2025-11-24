@@ -1,8 +1,10 @@
-extends Enemy
+class_name DashEnemy extends Enemy
 
 @onready var dash_timer : Timer = %DashTimer as Timer
 @onready var dash_visualization: Node2D = $DashVisRotationHelper/DashVisualization
 @onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree
+@onready var footsteps: AudioStreamPlayer2D = $Footsteps
+@onready var spawn: AudioStreamPlayer2D = $Spawn
 
 @export var moveSpeed : float = 100
 @export var dashSpeed : float = 200
@@ -18,11 +20,15 @@ enum States {DASHING, TRACKING_PLAYER, WAIT_DASH}
 
 func _ready() -> void:
 	attack_waring.hide()
+	spawn.play()
 	dash_visualization.hide()
+	super._ready()
 
 func _physics_process(delta: float) -> void:
 	animation_tree.set("parameters/Idle/blend_position", velocity.normalized().x)
 	animation_tree.set("parameters/Move/blend_position", velocity.normalized().x)
+	if footsteps.playing == false:
+		footsteps.play()
 	match state:
 		States.DASHING:
 			pass

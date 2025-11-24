@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://btgs2icui0x8c"]
+[gd_scene load_steps=7 format=3 uid="uid://btgs2icui0x8c"]
 
 [ext_resource type="Script" uid="uid://by5qiuora5lm6" path="res://Inventory/inventory.gd" id="1_xqyry"]
 [ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="2_88mhb"]
+[ext_resource type="AudioStream" uid="uid://xym7uia21noq" path="res://Assets/SFX/Cooldown Finished/DSGNTonl_SKILL IMPACT-Swoosh Grain_HY_PC-004.wav" id="2_spuu0"]
 [ext_resource type="Texture2D" uid="uid://deiro2an22sx7" path="res://Assets/swap.png" id="3_88mhb"]
+[ext_resource type="AudioStream" uid="uid://b0o0mji8ire51" path="res://Assets/SFX/Cooldown Finished/DSGNTonl_SKILL IMPACT-Swoosh Grain_HY_PC-005.wav" id="3_nxe83"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g4pjs"]
+streams_count = 2
+stream_0/stream = ExtResource("2_spuu0")
+stream_1/stream = ExtResource("3_nxe83")
 
 [node name="Inventory" type="Control" groups=["Inventory"]]
 layout_mode = 3
@@ -12,6 +19,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xqyry")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_g4pjs")
+volume_db = -5.538
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
