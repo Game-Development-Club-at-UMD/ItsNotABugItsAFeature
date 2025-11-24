@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://blvmur8hai3fg" path="res://Assets/MC_Front.png" id="3_x3vf3"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_apopc"]
 [ext_resource type="PackedScene" uid="uid://btgs2icui0x8c" path="res://Inventory/inventory.tscn" id="6_fhl08"]
-[ext_resource type="Script" uid="uid://b3au3idb4jsar" path="res://Player/Health_bar.gd" id="8_5htga"]
+[ext_resource type="Script" path="res://Player/Health_bar.gd" id="8_5htga"]
 [ext_resource type="Texture2D" uid="uid://bisphplyf2tev" path="res://Assets/MC_Back.png" id="8_apopc"]
 [ext_resource type="Texture2D" uid="uid://cfxq8i0jkk270" path="res://Assets/MC_Left.png" id="9_5htga"]
 [ext_resource type="Texture2D" uid="uid://ds27tocfp0hhr" path="res://Assets/MC_Right.png" id="10_p5o4e"]
@@ -33,10 +33,30 @@ height = 32.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5htga"]
-bg_color = Color(1, 0, 0, 1)
+bg_color = Color(0.92696357, 0.25646254, 0.1968292, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5o4e"]
-bg_color = Color(0, 1, 0, 1)
+bg_color = Color(0.37404636, 0.6956889, 0.11743126, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="Animation" id="Animation_b1ygp"]
 length = 0.001
@@ -235,6 +255,7 @@ offset_left = -544.0
 offset_top = -290.0
 offset_right = -360.0
 offset_bottom = -263.0
+theme_override_constants/outline_size = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_5htga")
 theme_override_styles/fill = SubResource("StyleBoxFlat_p5o4e")
 script = ExtResource("8_5htga")
