@@ -26,7 +26,7 @@ var did_switch : bool = false
 
 
 func _ready() -> void:
-	pickup_new_item(load("res://Items/Scenes/another_item.tscn"))
+	pickup_new_item(load("res://Items/Scenes/item.tscn"))
 	swap_items()
 	pickup_new_item(load("res://Items/Scenes/Item1.tscn"))
 	
