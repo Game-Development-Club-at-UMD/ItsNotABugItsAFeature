@@ -2,7 +2,9 @@ extends Node2D
 
 @onready var fade_player: AnimationPlayer = $FadePlayer
 @onready var color_rect: ColorRect = $CanvasLayer/ColorRect
-@onready var item_spawner: ItemSpawner = $ItemSpawner
+#@onready var item_spawner: ItemSpawner = $ItemSpawner
+@onready var item_spawner: ItemSpawner = $CanvasLayer/ItemSpawner
+
 @onready var wave_system: Node2D = $WaveSystem
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player : Player = get_tree().get_first_node_in_group("Player")

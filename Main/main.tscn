@@ -125,10 +125,6 @@ position = Vector2(569, 302)
 scale = Vector2(0.30442306, 0.30442306)
 texture = ExtResource("2_ib3t1")
 
-[node name="ItemSpawner" parent="." instance=ExtResource("3_ib3t1")]
-position = Vector2(562, 301)
-scale = Vector2(0.5200006, 0.5200006)
-
 [node name="Player" parent="." groups=["players"] instance=ExtResource("1_yh5la")]
 scale = Vector2(1.2, 1.2)
 collision_mask = 129
@@ -280,6 +276,10 @@ position = Vector2(585, -654)
 position = Vector2(1556, 410)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ItemSpawner" parent="CanvasLayer" instance=ExtResource("3_ib3t1")]
+position = Vector2(564.00006, 272.00003)
+scale = Vector2(1.9582092, 1.9582092)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false

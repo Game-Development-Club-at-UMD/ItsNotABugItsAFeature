@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxittwhcv7xg"]
+[gd_scene load_steps=16 format=3 uid="uid://cxittwhcv7xg"]
 
 [ext_resource type="Script" uid="uid://blfyr6mbm7vsb" path="res://Items/ItemSpawner/item_spawner.gd" id="1_v1wlb"]
 [ext_resource type="Texture2D" uid="uid://cqmqg3uxqk7yh" path="res://Assets/Elbow Arrow.png" id="2_7gxwm"]
 [ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="2_yxxfw"]
+[ext_resource type="Theme" uid="uid://bm0vssj4jk1ix" path="res://Assets/Theme/UI_theme.tres" id="3_wypw4"]
+[ext_resource type="Texture2D" uid="uid://debnkaj1a6tvw" path="res://Assets/UI Elements/E-Key.png" id="5_wyq8s"]
+[ext_resource type="Texture2D" uid="uid://l682d4imyrtg" path="res://Assets/UI Elements/Q-Key.png" id="6_c2wha"]
 
 [sub_resource type="Animation" id="Animation_7gxwm"]
 length = 0.001
@@ -60,15 +63,19 @@ _data = {
 radius = 451.03992
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gxwm"]
-bg_color = Color(0.14044744, 0.14044747, 0.14044738, 1)
+bg_color = Color(0.84010655, 0.4385187, 1.92523e-07, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
-border_color = Color(0.14117648, 0.14117648, 0.14117648, 1)
+border_color = Color(0.84010655, 0.4385187, 1.92523e-07, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ac5vx"]
-bg_color = Color(0.74558026, 0.7455802, 0.74558014, 1)
+bg_color = Color(1, 0.8526948, 0.76842713, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1nx6r"]
 
@@ -127,12 +134,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 1
+theme = ExtResource("3_wypw4")
 bbcode_enabled = true
 text = "[center]yayyy this is an item description"
 fit_content = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ItemPopup/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_wypw4")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_ac5vx")
@@ -173,33 +182,38 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
+theme = ExtResource("3_wypw4")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "sample text in here"
 
 [node name="Tooltips" type="HBoxContainer" parent="ItemPopup"]
-offset_left = -111.0
-offset_top = 157.0
-offset_right = 111.0
-offset_bottom = 197.0
+offset_left = -124.0
+offset_top = 148.0
+offset_right = 125.0
+offset_bottom = 194.0
+size_flags_horizontal = 3
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ItemPopup/Tooltips"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="SwapIcon" type="TextureRect" parent="ItemPopup/Tooltips/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("2_yxxfw")
+texture = ExtResource("5_wyq8s")
 expand_mode = 5
 stretch_mode = 5
 
 [node name="SwapText" type="RichTextLabel" parent="ItemPopup/Tooltips/HBoxContainer"]
 custom_minimum_size = Vector2(45, 10)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = ExtResource("3_wypw4")
 text = "Swap"
 fit_content = true
 
@@ -210,20 +224,23 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7gxwm")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ItemPopup/Tooltips"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="DeclineIcon" type="TextureRect" parent="ItemPopup/Tooltips/HBoxContainer2"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-texture = ExtResource("2_yxxfw")
+texture = ExtResource("6_c2wha")
 expand_mode = 5
 stretch_mode = 5
 
 [node name="DeclineText" type="RichTextLabel" parent="ItemPopup/Tooltips/HBoxContainer2"]
 custom_minimum_size = Vector2(60, 10)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = ExtResource("3_wypw4")
 text = "Decline"
 fit_content = true
 

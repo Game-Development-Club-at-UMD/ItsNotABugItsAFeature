@@ -56,8 +56,8 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("decline item") && distance < 250:
 				next_round()
 			
-			line_2d.set_point_position(0, to_local(global_position))
-			line_2d.set_point_position(1, to_local(player.global_position))
+			line_2d.set_point_position(0, Vector2(556, 300))
+			line_2d.set_point_position(1, player.global_position)
 			distance = clamp(distance, 250, 500)
 			line_2d.modulate.a = remap(distance, 250, 500, 0, 1)
 			item_popup.modulate.a = remap(distance, 250, 500, 1, 0)
