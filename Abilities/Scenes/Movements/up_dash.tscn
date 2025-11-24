@@ -4,6 +4,7 @@
 
 [sub_resource type="Animation" id="Animation_d67d4"]
 resource_name = "Start"
+length = 0.01
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
