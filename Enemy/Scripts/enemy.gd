@@ -33,7 +33,7 @@ func die():
 	self.queue_free()
 	
 func spawn_heal_pickup():
-	var healingBox : HurtBox = heal_hurtbox_scene.instantiate() as HurtBox
+	var healingBox : HealingHurtBox = heal_hurtbox_scene.instantiate() as HealingHurtBox
 	healingBox.global_position = global_position
 	var cur_scene = get_tree().current_scene
 	cur_scene.call_deferred("add_child", healingBox)
