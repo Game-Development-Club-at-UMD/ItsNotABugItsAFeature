@@ -8,7 +8,6 @@ var health : int
 var distance : float
 
 @onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree as AnimationTree
-#@onready var attack_waring: Sprite2D = $AttackWaring
 
 @export var moveSpeed : float = 100
 @export var shoot_threshold : float = 250
