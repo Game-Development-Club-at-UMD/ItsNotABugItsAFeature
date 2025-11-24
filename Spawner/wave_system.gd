@@ -4,7 +4,7 @@ extends Node2D
 @onready var spawn_timer: Timer = $SpawnTimer
 
 @onready var round_counter: RichTextLabel = %RoundCounter
-@onready var round_progress_bar: ProgressBar = %RoundProgressBar
+@onready var round_progress_bar: TextureProgressBar = %RoundProgressBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var splash_screen_text: RichTextLabel = %SplashScreenText
