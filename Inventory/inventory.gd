@@ -4,6 +4,8 @@ class_name Inventory extends Control
 
 signal movement_visualization_updated(direction : Vector2)
 signal active_item_swapped(item : Item)
+signal did_item_activate(val : bool)
+signal item_finished
 
 ## [Item] which gets triggered when the inventory is instructed to activate
 var active_item : Item
@@ -44,12 +46,24 @@ func activate():
 	did_switch = false
 	#if !active_progress_bar.visible:
 	active_item.activate()
+	
+	var has_started = await active_item.did_start
+	
+
+	if has_started == false:
+		
+		did_item_activate.emit(false)
+		return
+	
+	did_item_activate.emit(true)
+	
 	await active_item.start_cooldown
 	if did_switch:
 		inactive_progress_bar.visible = true
 	else:
 		active_progress_bar.visible = true
 	did_switch = false
+	item_finished.emit()
 
 ## Switches the current [member active_item] for the [Item] passed in as an active scene
 func pickup_new_item(new_item : PackedScene) -> void:
