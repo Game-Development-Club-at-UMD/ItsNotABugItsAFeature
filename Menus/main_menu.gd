@@ -18,17 +18,19 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	fade_player.play("FadeOut")
 	await fade_player.animation_finished
-	get_tree().change_scene_to_file("res://Main/main.tscn")
+	get_parent().switch_scene(self, "res://Main/main.tscn")
+	#get_tree().change_scene_to_file("res://Main/main.tscn")
 	
 func _on_settings_pressed() -> void:
 	fade_player.play("FadeOut")
 	await fade_player.animation_finished
-	get_tree().change_scene_to_file("res://Menus/settings.tscn")
+	get_parent().switch_scene(self, "res://Menus/settings.tscn")
+	#get_tree().change_scene_to_file("res://Menus/settings.tscn")
 
 func _on_credits_pressed() -> void:
 	fade_player.play("FadeOut")
 	await fade_player.animation_finished
-	pass # Replace with function body.
+	get_parent().switch_scene(self, "res://Menus/Credits.tscn")
 
 func _on_quit_pressed() -> void:
 	fade_player.play("FadeOut")

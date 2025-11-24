@@ -33,7 +33,7 @@ var did_switch : bool = false
 func _ready() -> void:
 	pickup_new_item(load("res://Items/Scenes/BasicItem.tscn"))
 	swap_items()
-	pickup_new_item(load("res://Items/Scenes/BasicItem.tscn"))
+	pickup_new_item(load("res://Items/Scenes/FocusedItem.tscn"))
 	
 
 func _process(_delta: float) -> void:

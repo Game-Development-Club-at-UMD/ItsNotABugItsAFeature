@@ -11,8 +11,9 @@ extends Node2D
 @onready var splash_screen: Control = %SplashScreen
 
 signal end_of_wave
-
+signal won
 var wave: int = 0
+var final_wave : int = 14
 
 var spawn_counter: int = 0
 var is_done_spawning: bool = false
@@ -39,12 +40,14 @@ func _ready() -> void:
 	play_splash_screen()
 
 func finish_round():
+	if wave == final_wave:
+		won.emit()
 	print("End of round ", wave)
 	spawn_timer.stop()
 	end_of_wave.emit()
 
 func update_round_counter():
-	round_counter.text = "[center]Round: " + str(wave) + "[/center]"
+	round_counter.text = "[center]Round: " + str(wave) + "/" + str(final_wave) + "[/center]"
 	round_progress_bar.value = 0
 
 func play_splash_screen():

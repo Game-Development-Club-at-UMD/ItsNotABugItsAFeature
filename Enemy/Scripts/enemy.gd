@@ -37,7 +37,7 @@ func player_location() -> Vector2:
 	return player.global_position
 	
 func die():
-	get_tree().get_first_node_in_group('camera').add_trauma(.5, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
+	get_tree().get_first_node_in_group('camera').add_trauma(.2, Vector2(randf_range(-1, 1), randf_range(-1, 1)))
 	is_dying = true
 	
 	modulate = Color(0.0, 0.0, 0.0, 1.0)

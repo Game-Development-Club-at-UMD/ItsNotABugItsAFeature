@@ -19,6 +19,7 @@ func _ready() -> void:
 	color_rect.visible = false
 	item_spawner.player_chose_item.connect(wave_system.next_round)
 	wave_system.end_of_wave.connect(item_spawner.start_item_selection_phase)
+	wave_system.won.connect(win)
 
 ## signal connects from Player
 func player_died():
@@ -30,6 +31,12 @@ func player_died():
 func ready_to_switch_scenes():
 	var game_manager : GameManager = get_parent() as GameManager
 	game_manager.lost_game(self)
+
+func win():
+	fade_player.play("fade_out")
+	await fade_player.animation_finished
+	var game_manager : GameManager = get_parent() as GameManager
+	game_manager.won_game(self)
 
 
 func _physics_process(delta: float) -> void:

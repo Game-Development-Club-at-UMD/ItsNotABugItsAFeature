@@ -10,13 +10,13 @@ func _process(_delta: float) -> void:
 
 func lost_game(old_loaded_scene : Node):
 	print("nooo you lost the game!")
-	#switch_scene(old_loaded_scene, "res://Menus/MainMenu.tscn")
-	switch_scene(old_loaded_scene, "res://Main/main.tscn")
+	switch_scene(old_loaded_scene, "res://Menus/main_menu.tscn")
+	#switch_scene(old_loaded_scene, "res://Main/main.tscn")
 
 func won_game(old_loaded_scene : Node):
 	print("yayyy you won the game!")
-	#switch_scene(old_loaded_scene, "res://Menus/Credits.tscn")
-	switch_scene(old_loaded_scene, "res://Main/main.tscn")
+	switch_scene(old_loaded_scene, "res://Menus/Credits.tscn")
+	#switch_scene(old_loaded_scene, "res://Main/main.tscn")
 
 func switch_scene(old_loaded_scene: Node, new_scene: String):
 	if old_loaded_scene.is_queued_for_deletion():
