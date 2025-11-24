@@ -1,7 +1,7 @@
 class_name Item extends Node
 
 signal start_cooldown
-
+signal did_start(val : bool)
 @export var icon : Sprite2D
 @export var first_ability : PackedScene
 @export var second_ability : PackedScene
@@ -19,8 +19,18 @@ func _ready() -> void:
 			player = possible_player as Player
 
 func activate():
+	
+	await get_tree().create_timer(0.01).timeout
+
 	if !timer.is_stopped() || is_running:
+		
+		did_start.emit(false)
+		
 		return
+	
+	
+	did_start.emit(true)
+	
 	is_running = true
 	cooldown = 0
 	
@@ -31,9 +41,11 @@ func activate():
 	var second_action =  activate_ability(second_ability)
 	cooldown = max(second_action.cooldown, cooldown)
 	await second_action.finished
+	
 	is_running = false
 	timer.start(cooldown)
 	start_cooldown.emit()
+	return true
 
 func activate_ability(ability : PackedScene) -> Ability:
 	var activated_ability : Ability = ability.instantiate() as Ability
