@@ -1,16 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cok2sx4r5f6o6"]
 
 [ext_resource type="Script" uid="uid://d22nhgjn8ebml" path="res://Menus/main_menu.gd" id="1_jf8mj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf8mj"]
-bg_color = Color(0.5095547, 0.6393584, 0.53277916, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0.2870057, 0.38416302, 0.30541295, 0.4862745)
-shadow_size = 5
-shadow_offset = Vector2(0, 3.5)
+[ext_resource type="Texture2D" uid="uid://bcr7mfakpuyeh" path="res://Assets/Button.png" id="2_p3jrs"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,10 +24,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -288.0
-offset_top = -207.625
-offset_right = 288.0
-offset_bottom = 207.625
+offset_left = -149.0
+offset_top = -93.0
+offset_right = 151.0
+offset_bottom = 175.625
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,34 +39,81 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Play" type="Button" parent="VSplitContainer/MenuOptions"]
+[node name="Play" type="TextureButton" parent="VSplitContainer/MenuOptions"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
-text = "Play"
+texture_normal = ExtResource("2_p3jrs")
+texture_pressed = ExtResource("2_p3jrs")
+stretch_mode = 0
 
-[node name="Settings" type="Button" parent="VSplitContainer/MenuOptions"]
+[node name="PlayText" type="RichTextLabel" parent="VSplitContainer/MenuOptions/Play"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 9.0
+offset_right = 206.0
+offset_bottom = 44.375
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Play[/center]"
+
+[node name="Settings" type="TextureButton" parent="VSplitContainer/MenuOptions"]
 layout_mode = 2
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
-text = "Settings
+texture_normal = ExtResource("2_p3jrs")
+texture_pressed = ExtResource("2_p3jrs")
+stretch_mode = 0
+
+[node name="SettingsText" type="RichTextLabel" parent="VSplitContainer/MenuOptions/Settings"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 12.0
+offset_right = 219.0
+offset_bottom = 52.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Settings[/center]"
+
+[node name="Credits" type="TextureButton" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+texture_normal = ExtResource("2_p3jrs")
+stretch_mode = 0
+
+[node name="CreditsText" type="RichTextLabel" parent="VSplitContainer/MenuOptions/Credits"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 12.0
+offset_right = 219.0
+offset_bottom = 52.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Credits[/center]"
+
+[node name="Quit" type="TextureButton" parent="VSplitContainer/MenuOptions"]
+layout_mode = 2
+size_flags_vertical = 2
+texture_normal = ExtResource("2_p3jrs")
+texture_pressed = ExtResource("2_p3jrs")
+stretch_mode = 0
+
+[node name="QuitText" type="RichTextLabel" parent="VSplitContainer/MenuOptions/Quit"]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 10.0
+offset_right = 214.0
+offset_bottom = 50.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Quit[/center]
 "
 
-[node name="Credits" type="Button" parent="VSplitContainer/MenuOptions"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
-text = "Credits"
-
-[node name="Quit" type="Button" parent="VSplitContainer/MenuOptions"]
-layout_mode = 2
-size_flags_vertical = 2
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_jf8mj")
-text = "Quit"
-
+[connection signal="mouse_entered" from="VSplitContainer/MenuOptions/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="VSplitContainer/MenuOptions/Play" to="." method="_on_play_mouse_exited"]
 [connection signal="pressed" from="VSplitContainer/MenuOptions/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="VSplitContainer/MenuOptions/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="VSplitContainer/MenuOptions/Settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="mouse_entered" from="VSplitContainer/MenuOptions/Credits" to="." method="_on_credits_mouse_entered"]
+[connection signal="mouse_exited" from="VSplitContainer/MenuOptions/Credits" to="." method="_on_credits_mouse_exited"]
+[connection signal="mouse_entered" from="VSplitContainer/MenuOptions/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="VSplitContainer/MenuOptions/Quit" to="." method="_on_quit_mouse_exited"]
 [connection signal="pressed" from="VSplitContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
