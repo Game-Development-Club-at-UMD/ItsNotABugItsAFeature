@@ -3,7 +3,6 @@ extends Enemy
 @onready var dash_timer : Timer = %DashTimer as Timer
 @onready var dash_visualization: Node2D = $DashVisRotationHelper/DashVisualization
 @onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree
-#@onready var attack_waring: Sprite2D = $AttackWaring
 
 @export var moveSpeed : float = 100
 @export var dashSpeed : float = 200

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6v2s2m56205m"]
 
-[ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="1_iojkl"]
+[ext_resource type="Texture2D" uid="uid://dlpfpllmwnxqk" path="res://Assets/exclamation_mark.png" id="1_iojkl"]
 
 [node name="attack_warning" type="Sprite2D"]
 scale = Vector2(0.13185096, 0.13185096)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://kaculelvnd8m"]
+[gd_scene load_steps=36 format=3 uid="uid://kaculelvnd8m"]
 
 [ext_resource type="Script" uid="uid://bxn20024ywqsv" path="res://Enemy/Scripts/ranged_enemy.gd" id="1_se4dn"]
 [ext_resource type="PackedScene" uid="uid://d3fd1e3qgtub8" path="res://Enemy/Scenes/bullet.tscn" id="2_ga46k"]
@@ -10,12 +10,11 @@
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_q5mxs"]
 [ext_resource type="Texture2D" uid="uid://swomc1p602gg" path="res://Assets/Enemy/Ranged/1B.PNG" id="9_7hgoq"]
 [ext_resource type="Texture2D" uid="uid://dcl4brd3ueqrj" path="res://Assets/Enemy/Ranged/2B.PNG" id="10_q5mxs"]
-[ext_resource type="Texture2D" uid="uid://de2qt30lkg4in" path="res://Assets/icon.svg" id="11_51qi3"]
 [ext_resource type="PackedScene" uid="uid://c6v2s2m56205m" path="res://Enemy/Attack_Indicator/sprite_2d.tscn" id="12_ic5tx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_51qi3"]
 
-[sub_resource type="Resource" id="Resource_ic5tx"]
+[sub_resource type="Resource" id="Resource_51qi3"]
 resource_local_to_scene = true
 script = ExtResource("3_nwq0y")
 power = 10
@@ -267,7 +266,7 @@ shape = SubResource("CapsuleShape2D_51qi3")
 [node name="HurtBox" parent="." node_paths=PackedStringArray("collision_shape2D") instance=ExtResource("2_lxedy")]
 collision_layer = 2
 collision_mask = 0
-hurt_component = SubResource("Resource_ic5tx")
+hurt_component = SubResource("Resource_51qi3")
 collision_shape2D = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -324,13 +323,8 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Idle/blend_position = -0.0060606003
 parameters/Move/blend_position = 0.0
 
-[node name="AttackWaring" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -31)
-scale = Vector2(0.1328125, 0.1328125)
-texture = ExtResource("11_51qi3")
-
 [node name="attack_warning" parent="." instance=ExtResource("12_ic5tx")]
-position = Vector2(0, -34)
+position = Vector2(0, -36.000004)
+scale = Vector2(0.047128487, 0.047128487)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
