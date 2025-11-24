@@ -2,6 +2,7 @@ extends Enemy
 
 @onready var dash_timer : Timer = %DashTimer as Timer
 @onready var dash_visualization: Node2D = $DashVisRotationHelper/DashVisualization
+@onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree
 
 @export var moveSpeed : float = 100
 @export var dashSpeed : float = 200
@@ -17,6 +18,8 @@ func _ready() -> void:
 	dash_visualization.hide()
 
 func _physics_process(delta: float) -> void:
+	animation_tree.set("parameters/Idle/blend_position", velocity.normalized().x)
+	animation_tree.set("parameters/Move/blend_position", velocity.normalized().x)
 	match state:
 		States.DASHING:
 			pass
@@ -26,6 +29,8 @@ func _physics_process(delta: float) -> void:
 			velocity = navigation_agent_2d.get_velocity() 
 		States.WAIT_DASH:
 			velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
+			if velocity.x < 0.1:
+				velocity = Vector2.ZERO
 	
 	move_and_slide()
 	update_health(health)
