@@ -35,6 +35,8 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	if velocity.length() < 1:
+		velocity = Vector2.ZERO
 	move_vis_rotation_helper.look_at(get_global_mouse_position())
 	match state:
 		States.PlAYER_MOVE:
