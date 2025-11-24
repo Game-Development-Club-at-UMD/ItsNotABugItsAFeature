@@ -68,6 +68,7 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/ActiveItemIcon"]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_right = 120.0
@@ -77,6 +78,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_g4pjs")
 value = 50.0
 fill_mode = 3
 show_percentage = false
+
+[node name="ColorRect" type="Panel" parent="MarginContainer/HBoxContainer/ActiveItemIcon"]
+z_index = -2
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 124.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxe83")
 
 [node name="SwapIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
@@ -107,6 +115,7 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/InactiveItemIcon"]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_right = 70.0
@@ -115,3 +124,10 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nxe83")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g4pjs")
 fill_mode = 3
 show_percentage = false
+
+[node name="ColorRect" type="Panel" parent="MarginContainer/HBoxContainer/InactiveItemIcon"]
+z_index = -2
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxe83")
