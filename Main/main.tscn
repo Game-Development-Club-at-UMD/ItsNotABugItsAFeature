@@ -167,6 +167,7 @@ position = Vector2(616, -499)
 shape = SubResource("RectangleShape2D_ib3t1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_k3v36")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D"]
