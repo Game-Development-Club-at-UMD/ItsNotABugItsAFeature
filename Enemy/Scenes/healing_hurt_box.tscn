@@ -114,4 +114,8 @@ scale_amount_max = 4.5
 scale_amount_curve = SubResource("Curve_j5o0u")
 color = Color(0.4225901, 1, 0.8461458, 1)
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
