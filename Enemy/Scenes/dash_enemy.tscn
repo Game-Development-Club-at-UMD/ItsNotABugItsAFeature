@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtl61m7bvusg"]
+[gd_scene load_steps=33 format=3 uid="uid://dtl61m7bvusg"]
 
 [ext_resource type="Script" uid="uid://bs7yaq7gomar5" path="res://Enemy/Scripts/Dash_enemy.gd" id="1_tvo0k"]
 [ext_resource type="PackedScene" uid="uid://dvpodtds0af3b" path="res://Enemy/Scenes/healing_hurt_box.tscn" id="2_6djl0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://86uwh70cdq33" path="res://Components/health_component.gd" id="5_brb1q"]
 [ext_resource type="Script" uid="uid://c8xnefd6fkw30" path="res://Visual Effects/particle_emitter.gd" id="6_jpr3n"]
 [ext_resource type="PackedScene" uid="uid://dlm8am5bc47cs" path="res://Abilities/Scenes/movement_visualization.tscn" id="7_qou4v"]
+[ext_resource type="Texture2D" uid="uid://ddp2p27qvl8b5" path="res://Assets/Enemy/Dash/1F.PNG" id="9_idvar"]
+[ext_resource type="Texture2D" uid="uid://vyvyhradp17q" path="res://Assets/Enemy/Dash/2F.PNG" id="10_x26mw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvo0k"]
 
@@ -36,6 +38,237 @@ metadata/_custom_type_script = "uid://c8xnefd6fkw30"
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a3ece"]
 radius = 11.0
 height = 32.0
+
+[sub_resource type="Animation" id="Animation_dulps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_idvar")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l630y"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_idvar"), ExtResource("10_x26mw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0y8qy"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_idvar"), ExtResource("10_x26mw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_idvar"]
+resource_name = "idle_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.016666666),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_idvar")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2.5), Vector2(0, -2.5)]
+}
+
+[sub_resource type="Animation" id="Animation_nmu6k"]
+resource_name = "idle_right"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_idvar")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2.5), Vector2(0, -2.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgasx"]
+_data = {
+&"RESET": SubResource("Animation_dulps"),
+&"idle_left": SubResource("Animation_idvar"),
+&"idle_right": SubResource("Animation_nmu6k"),
+&"move_left": SubResource("Animation_l630y"),
+&"move_right": SubResource("Animation_0y8qy")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idvar"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x26mw"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_idvar"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_idvar")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_x26mw")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dulps"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmu6k"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_x26mw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dulps")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_nmu6k")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l630y"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y8qy"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgasx"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dulps"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_idvar")
+states/Idle/position = Vector2(531, 38)
+states/Move/node = SubResource("AnimationNodeBlendSpace1D_x26mw")
+states/Move/position = Vector2(522, 125)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_l630y"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_0y8qy"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_bgasx")]
 
 [node name="dash_enemy" type="CharacterBody2D" node_paths=PackedStringArray("healthbar") groups=["enemy"]]
 script = ExtResource("1_tvo0k")
@@ -90,6 +323,22 @@ show_percentage = false
 [node name="DashVisRotationHelper" type="Node2D" parent="."]
 
 [node name="DashVisualization" parent="DashVisRotationHelper" instance=ExtResource("7_qou4v")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("9_idvar")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_bgasx")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Sprite2D"]
+tree_root = SubResource("AnimationNodeStateMachine_dulps")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Idle/blend_position = 0.0
+parameters/Move/blend_position = -0.5888889
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

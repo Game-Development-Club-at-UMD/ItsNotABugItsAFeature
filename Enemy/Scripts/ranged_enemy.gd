@@ -7,12 +7,16 @@ var state : States = States.TRACKING_PLAYER
 var health : int
 var distance : float
 
+@onready var animation_tree: AnimationTree = $Sprite2D/AnimationTree as AnimationTree
+
 @export var moveSpeed : float = 100
 @export var shoot_threshold : float = 250
 @export var projectile : PackedScene
 @export var init_proj_velocity : float = 100
 
 func _physics_process(delta: float) -> void:
+	animation_tree.set("parameters/Idle/blend_position", velocity.normalized().x)
+	animation_tree.set("parameters/Move/blend_position", velocity.normalized().x)
 	match state:
 		States.TRACKING_PLAYER:
 			move_enemy(delta, moveSpeed)
@@ -20,6 +24,8 @@ func _physics_process(delta: float) -> void:
 			check_for_shoot()
 		States.SHOOTING:
 			velocity = lerp(velocity, Vector2.ZERO, 12 * delta)
+			if velocity.x < 0.1:
+				velocity = Vector2.ZERO
 	
 	move_and_slide()
 	update_health(health)
