@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://btgs2icui0x8c" path="res://Inventory/inventory.tscn" id="6_fhl08"]
 [ext_resource type="Script" uid="uid://b3au3idb4jsar" path="res://Player/Health_bar.gd" id="8_5htga"]
 [ext_resource type="PackedScene" uid="uid://dlm8am5bc47cs" path="res://Abilities/Scenes/movement_visualization.tscn" id="11_apopc"]
+[ext_resource type="Texture2D" uid="uid://d3cl0r1thovu8" path="res://Assets/healthbarUnder.png" id="13_n471f"]
 [ext_resource type="AudioStream" uid="uid://ojv3bxnymwpr" path="res://Assets/SFX/FGHTImpt_HIT-Strong_Smack_HY_PC-004[1].wav" id="13_p5o4e"]
+[ext_resource type="Texture2D" uid="uid://m74i1pagcknp" path="res://Assets/healthbarProgress.png" id="14_7emwf"]
 [ext_resource type="AudioStream" uid="uid://do3bouyumgn6g" path="res://Assets/SFX/Footsteps/GRASS - Walk short 1.wav" id="14_gu6f8"]
 [ext_resource type="AudioStream" uid="uid://g32v1o4mkqf8" path="res://Assets/SFX/Footsteps/GRASS - Walk short 2.wav" id="15_pisgm"]
 [ext_resource type="AudioStream" uid="uid://h2k1io856jk6" path="res://Assets/SFX/Footsteps/GRASS - Walk short 3.wav" id="16_b1ygp"]
@@ -459,32 +461,6 @@ height = 38.0
 radius = 13.0
 height = 36.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5htga"]
-bg_color = Color(0.92696357, 0.25646254, 0.1968292, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-corner_detail = 20
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5o4e"]
-bg_color = Color(0.37404636, 0.6956889, 0.11743126, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="Animation" id="Animation_b1ygp"]
 length = 0.001
 tracks/0/type = "value"
@@ -884,14 +860,17 @@ offset_top = -327.0
 offset_right = -576.0
 offset_bottom = -327.0
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("Hitbox")]
+[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("Hitbox")]
+texture_filter = 1
 offset_left = -544.0
 offset_top = -290.0
-offset_right = -360.0
-offset_bottom = -263.0
-theme_override_constants/outline_size = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_5htga")
-theme_override_styles/fill = SubResource("StyleBoxFlat_p5o4e")
+offset_right = -295.0
+offset_bottom = -242.0
+nine_patch_stretch = true
+texture_under = ExtResource("13_n471f")
+texture_progress = ExtResource("14_7emwf")
+tint_under = Color(0.6509804, 0.43529412, 0.34901962, 1)
+tint_progress = Color(0.940172, 0.0006634583, 0.008520683, 1)
 script = ExtResource("8_5htga")
 Hitbox = NodePath("../../HitBox")
 
