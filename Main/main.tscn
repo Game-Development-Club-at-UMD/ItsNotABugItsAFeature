@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsv5ih6knxyxl"]
+[gd_scene load_steps=14 format=3 uid="uid://dsv5ih6knxyxl"]
 
 [ext_resource type="Script" uid="uid://wcnsakjm3t4m" path="res://Main/main.gd" id="1_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://1sajrvnamtf7" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="Texture2D" uid="uid://bt4y35ytc4b6w" path="res://Assets/BG.png" id="2_ib3t1"]
+[ext_resource type="Script" uid="uid://cqxshwjioubny" path="res://2D Tools/CameraShake.gd" id="2_liyct"]
 [ext_resource type="PackedScene" uid="uid://cxittwhcv7xg" path="res://Items/ItemSpawner/ItemSpawner.tscn" id="3_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://dd8padwwgwlvi" path="res://Spawner/wave_system.tscn" id="5_k3v36"]
 
@@ -110,13 +111,14 @@ _data = {
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ib3t1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 position = Vector2(566, 304)
 zoom = Vector2(1.2, 1.2)
 limit_left = -150
 limit_top = -435
 limit_right = 1295
 limit_bottom = 1020
+script = ExtResource("2_liyct")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
