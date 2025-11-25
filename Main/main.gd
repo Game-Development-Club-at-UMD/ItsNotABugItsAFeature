@@ -46,4 +46,4 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("exit"):
 		fade_player.play("fade_out")
 		await fade_player.animation_finished
-		(get_parent() as GameManager).switch_scene(self,  "res://Menus/MainMenu.tscn")
+		(get_parent() as GameManager).switch_scene(self,  "res://Menus/main_menu.tscn")

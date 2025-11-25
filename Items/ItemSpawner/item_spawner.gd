@@ -37,8 +37,8 @@ func _ready() -> void:
 	get_player()
 
 func initialize_inventory():
-	await get_tree().root.ready
 	inventory = get_tree().get_first_node_in_group("Inventory")
+	print(inventory)
 	inventory.active_item_swapped.connect(display_current_player_items)
 
 func get_player():
@@ -98,7 +98,9 @@ func start_item_selection_phase():
 	state = States.ENABLED
 
 func display_current_player_items(item : Item):
+	print('d')
 	item_1_icon.texture_normal = item.icon.texture
 	var first_ability = item.first_ability.instantiate()
 	var second_ability = item.second_ability.instantiate()
 	item_1_text.text = first_ability.text + "[br]" + second_ability.text
+	print(first_ability.text + "[br]" + second_ability.text)
